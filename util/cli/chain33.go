@@ -40,6 +40,7 @@ import (
 	"github.com/33cn/chain33/consensus"
 	"github.com/33cn/chain33/executor"
 	"github.com/33cn/chain33/mempool"
+	_ "github.com/33cn/chain33/plugin"
 	"github.com/33cn/chain33/queue"
 	"github.com/33cn/chain33/rpc"
 	"github.com/33cn/chain33/store"
