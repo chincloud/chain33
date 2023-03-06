@@ -18,6 +18,8 @@ EventTransfer -> 转移资产
 
 import (
 	"bytes"
+	"github.com/33cn/chain33/account"
+	"strings"
 
 	"github.com/33cn/chain33/common/log"
 	drivers "github.com/33cn/chain33/system/dapp"
@@ -27,6 +29,7 @@ import (
 
 var clog = log.New("module", "execs.coins")
 var driverName = "coins"
+var userPrefix = "user.coins"
 
 type subConfig struct {
 	DisableAddrReceiver  bool     `json:"disableAddrReceiver"`
@@ -49,6 +52,12 @@ func Init(name string, cfg *types.Chain33Config, sub []byte) {
 	InitExecType()
 }
 
+func CopyCoins(name string, cfg *types.Chain33Config) {
+	// 需要先 RegisterDappFork才可以Register dapp
+	drivers.Register(cfg, name, newCoins, cfg.GetDappFork(driverName, "Enable"))
+	InitExecType()
+}
+
 //InitExecType the initialization process is relatively heavyweight, lots of reflect, so it's global
 func InitExecType() {
 	ety := types.LoadExecutorType(driverName)
@@ -63,6 +72,7 @@ func GetName() string {
 // Coins defines coins
 type Coins struct {
 	drivers.DriverBase
+	coinsaccount *account.DB
 }
 
 func newCoins() drivers.Driver {
@@ -70,6 +80,45 @@ func newCoins() drivers.Driver {
 	c.SetChild(c)
 	c.SetExecutorType(types.LoadExecutorType(driverName))
 	return c
+}
+
+func (c *Coins) Allow(tx *types.Transaction, index int) error {
+	if len(tx.Execer) == len([]byte(driverName)) && c.AllowIsSame(tx.Execer) {
+		return nil
+	}
+	if c.AllowIsUserDot2(tx.Execer) {
+		return nil
+	}
+	return types.ErrNotAllow
+}
+
+func (c *Coins) GetCoinsAccount() *account.DB {
+	if c.coinsaccount == nil {
+		types.AssertConfig(c.GetAPI())
+		cfg := c.GetAPI().GetConfig()
+		execName := c.GetCurrentExecName()
+		if execName != driverName {
+			if strings.HasPrefix(execName, userPrefix) {
+				count := 0
+				index := 0
+				s := len(userPrefix)
+				for i := s; i < len(execName); i++ {
+					if execName[i] == '.' {
+						count++
+						index = i
+					}
+				}
+				if count == 1 {
+					c.coinsaccount = account.NewCoinsAccountWithExecName(execName[index+1:], cfg)
+				}
+			}
+		}
+		if c.coinsaccount == nil {
+			c.coinsaccount = account.NewCoinsAccount(cfg)
+		}
+		c.coinsaccount.SetDB(c.GetStateDB())
+	}
+	return c.coinsaccount
 }
 
 // GetDriverName get drive name
@@ -128,6 +177,15 @@ func (c *Coins) IsFriend(myexec, writekey []byte, othertx *types.Transaction) bo
 					return true
 				}
 			}
+		}
+	}
+
+	//step4 用户自定义coins合约
+	if bytes.HasPrefix(othertx.Execer, []byte("user.coins.")) && bytes.HasPrefix(writekey, []byte("mavl-coins-")) {
+		nameLen := len(othertx.Execer) - len([]byte("user.coins."))
+		writekeyPrefixLen := len([]byte("mavl-coins-")) + nameLen
+		if string(othertx.Execer[len(othertx.Execer)-nameLen:]) == string(writekey[writekeyPrefixLen-nameLen:writekeyPrefixLen]) {
+			return true
 		}
 	}
 

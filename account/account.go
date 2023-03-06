@@ -47,6 +47,13 @@ func NewCoinsAccount(cfg *types.Chain33Config) *DB {
 	return newAccountDB(cfg, prefix)
 }
 
+// NewCoinsAccount 新建账户
+func NewCoinsAccountWithExecName(execName string, cfg *types.Chain33Config) *DB {
+	//缺省"coins"，支持coinsx扩展
+	prefix := "mavl-" + cfg.GetCoinExec() + "-" + execName + "-"
+	return newAccountDB(cfg, prefix)
+}
+
 // NewAccountDB 新建DB账户
 func NewAccountDB(cfg *types.Chain33Config, execer string, symbol string, db dbm.KV) (*DB, error) {
 	//如果execer 和  symbol 中存在 "-", 那么创建失败
