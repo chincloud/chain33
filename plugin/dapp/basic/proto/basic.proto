@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package types;
+
+option go_package = "../types";
+
+// message for execs.basic
+message BasicAction {
+  oneof value {
+    Read              read              = 1;
+    Update            update            = 2;
+    ReadModifyWrite   readModifyWrite   = 3;
+  }
+  int32 ty = 4;
+}
+
+message ReadModifyWrite {
+  repeated string Reads = 1;
+  repeated string Writes = 2;
+}
+
+message Update {
+  repeated string Writes = 1;
+}
+
+message Read {
+  repeated string Reads = 1;
+}
+
+message Data {
+  int32 Value = 1;
+}
