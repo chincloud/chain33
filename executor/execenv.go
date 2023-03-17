@@ -6,7 +6,6 @@ package executor
 
 import (
 	"bytes"
-
 	"github.com/33cn/chain33/account"
 	"github.com/33cn/chain33/client"
 	"github.com/33cn/chain33/client/api"
@@ -36,11 +35,11 @@ type executor struct {
 	//单个区块执行期间执行器缓存
 	driverCache map[string]drivers.Driver
 	//在单笔交易执行期间，将当前交易的执行driver缓存，避免多次load
-	currTxIdx  int
-	currExecTx *types.Transaction
-	currDriver drivers.Driver
-	cfg        *types.Chain33Config
-	exec       *Executor
+	//currTxIdx  int
+	//currExecTx *types.Transaction
+	txDriverCache []*drivers.Driver
+	cfg           *types.Chain33Config
+	exec          *Executor
 }
 
 type executorCtx struct {
@@ -73,9 +72,10 @@ func newExecutor(ctx *executorCtx, exec *Executor, localdb dbm.KVDB, txs []*type
 		api:          exec.qclient,
 		gcli:         exec.grpccli,
 		driverCache:  make(map[string]drivers.Driver),
-		currTxIdx:    -1,
-		cfg:          cfg,
-		exec:         exec,
+		//currTxIdx:    -1,
+		txDriverCache: make([]*drivers.Driver, len(txs)),
+		cfg:           cfg,
+		exec:          exec,
 	}
 	e.coinsAccount.SetDB(e.stateDB)
 	return e
@@ -248,6 +248,7 @@ func (e *executor) Exec(tx *types.Transaction, index int) (receipt *types.Receip
 	}()
 
 	exec := e.loadDriver(tx, index)
+
 	//to 必须是一个地址
 	if err := drivers.CheckAddress(e.cfg, tx.GetRealToAddr(), e.height); err != nil {
 		return nil, err
@@ -312,9 +313,13 @@ func (e *executor) loadNoneDriver() drivers.Driver {
 func (e *executor) loadDriver(tx *types.Transaction, index int) (c drivers.Driver) {
 
 	// 交易和index都相等时，返回已缓存的当前交易执行器
-	if e.currExecTx == tx && e.currTxIdx == index {
-		return e.currDriver
+	//if e.currExecTx == tx && e.currTxIdx == index {
+	//	return e.currDriver
+	//}
+	if e.txDriverCache[index] != nil {
+		return *e.txDriverCache[index]
 	}
+
 	var err error
 	name := types.Bytes2Str(tx.Execer)
 	driver, ok := e.driverCache[name]
@@ -354,11 +359,12 @@ func (e *executor) loadDriver(tx *types.Transaction, index int) (c drivers.Drive
 	e.setEnv(driver)
 
 	//均不相等时，表明当前交易已更新，需要同步更新缓存，并记录当前交易及其index
-	if e.currExecTx != tx && e.currTxIdx != index {
-		e.currExecTx = tx
-		e.currTxIdx = index
-		e.currDriver = driver
-	}
+	//if e.currExecTx != tx && e.currTxIdx != index {
+	//	e.currExecTx = tx
+	//	e.currTxIdx = index
+	//	e.currDriver = driver
+	//}
+	e.txDriverCache[index] = &driver
 	return driver
 }
 
@@ -474,7 +480,7 @@ func copyReceipt(feelog *types.Receipt) *types.Receipt {
 
 func (e *executor) execTxOne(feelog *types.Receipt, tx *types.Transaction, index int) (*types.Receipt, error) {
 	//只有到pack级别的，才会增加index
-	e.startTx()
+	//e.startTx()
 	receipt, err := e.Exec(tx, index)
 	if err != nil {
 		elog.Error("exec tx error = ", "err", err, "exec", string(tx.Execer), "action", tx.ActionName())
@@ -599,8 +605,11 @@ func (e *executor) rollback() {
 }
 
 func (e *executor) execTx(exec *Executor, tx *types.Transaction, index int) (*types.Receipt, error) {
+	var rwSet *RWSet
 	if e.height == 0 { //genesis block 不检查手续费
-		receipt, err := e.Exec(tx, index)
+		var receipt *types.Receipt
+		var err error
+		receipt, err = e.Exec(tx, index)
 		if err != nil {
 			panic(err)
 		}
@@ -628,15 +637,21 @@ func (e *executor) execTx(exec *Executor, tx *types.Transaction, index int) (*ty
 		return nil, err
 	}
 	//ignore err
-	e.begin()
+	if rwSet == nil {
+		e.begin()
+	}
 	feelog, err = e.execTxOne(feelog, tx, index)
 	if err != nil {
-		e.rollback()
+		if rwSet == nil {
+			e.rollback()
+		}
 		elog.Error("exec tx = ", "index", index, "execer", string(tx.Execer), "err", err)
 	} else {
-		err := e.commit()
-		if err != nil {
-			return nil, err
+		if rwSet == nil {
+			err := e.commit()
+			if err != nil {
+				return nil, err
+			}
 		}
 	}
 
