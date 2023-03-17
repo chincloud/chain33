@@ -605,7 +605,6 @@ func (e *executor) rollback() {
 }
 
 func (e *executor) execTx(exec *Executor, tx *types.Transaction, index int) (*types.Receipt, error) {
-	var rwSet *RWSet
 	if e.height == 0 { //genesis block 不检查手续费
 		var receipt *types.Receipt
 		var err error
@@ -637,21 +636,15 @@ func (e *executor) execTx(exec *Executor, tx *types.Transaction, index int) (*ty
 		return nil, err
 	}
 	//ignore err
-	if rwSet == nil {
-		e.begin()
-	}
+	//e.begin()
 	feelog, err = e.execTxOne(feelog, tx, index)
 	if err != nil {
-		if rwSet == nil {
-			e.rollback()
-		}
+		//e.rollback()
 		elog.Error("exec tx = ", "index", index, "execer", string(tx.Execer), "err", err)
 	} else {
-		if rwSet == nil {
-			err := e.commit()
-			if err != nil {
-				return nil, err
-			}
+		//err := e.commit()
+		if err != nil {
+			return nil, err
 		}
 	}
 
