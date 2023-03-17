@@ -3,8 +3,11 @@ package executor
 import (
 	"fmt"
 	log "github.com/33cn/chain33/common/log/log15"
+	bty "github.com/33cn/chain33/plugin/dapp/basic/types"
 	drivers "github.com/33cn/chain33/system/dapp"
 	"github.com/33cn/chain33/types"
+	"reflect"
+	"strings"
 )
 
 var clog = log.New("module", "execs.basic")
@@ -47,6 +50,38 @@ func newBasic() drivers.Driver {
 	return n
 }
 
+func (basic *Basic) GetTxWritesAndReads(tx *types.Transaction) (reads []string, writes []string, err error) {
+	action, err := basic.GetExecutorType().DecodePayload(tx)
+	var vty int32
+	var v reflect.Value
+	_, vty, v, err = types.GetActionValue(action, basic.GetFuncMap())
+	if err != nil {
+		return nil, nil, err
+	}
+	if vty == bty.BasicActionRead {
+		val := v.Interface().(*bty.Read)
+		reads = val.Reads
+	} else if vty == bty.BasicActionUpdate {
+		val := v.Interface().(*bty.Update)
+		writes = val.Writes
+	} else if vty == bty.BasicActionReadModifyWrite {
+		val := v.Interface().(*bty.ReadModifyWrite)
+		reads = val.Reads
+		writes = val.Writes
+	}
+	return
+}
+
+func (basic *Basic) Allow(tx *types.Transaction, index int) error {
+	if len(tx.Execer) == len([]byte(driverName)) && basic.AllowIsSame(tx.Execer) {
+		return nil
+	}
+	if basic.AllowIsUserDot2(tx.Execer) {
+		return nil
+	}
+	return types.ErrNotAllow
+}
+
 // GetDriverName for basic
 func (basic *Basic) GetDriverName() string {
 	return driverName
@@ -70,8 +105,20 @@ func (basic *Basic) CheckReceiptExecOk() bool {
 	return true
 }
 
+// IsFriend defines a isfriend function
+func (basic *Basic) IsFriend(myexec, writekey []byte, othertx *types.Transaction) bool {
+	//step1 先判定自己合约的权限
+	if !basic.AllowIsSame(myexec) {
+		return false
+	}
+	if strings.HasPrefix(string(writekey), "mavl-basic-"+string(othertx.Execer)) {
+		return true
+	}
+	return false
+}
+
 //ExecutorOrder 执行顺序, 如果要使用 ExecLocalSameTime
 //那么会同时执行 ExecLocal
-func (basic *Basic) ExecutorOrder() int64 {
-	return drivers.ExecLocalSameTime
-}
+//func (basic *Basic) ExecutorOrder() int64 {
+//	return drivers.ExecLocalSameTime
+//}

@@ -130,7 +130,7 @@ func SetTxWritesOrReads(strs []string, tx *TxInfo) {
 		for j := 2; j < len(strs); j++ {
 			keys := strings.Split(strs[j], "_")
 			n, _ := strconv.Atoi(keys[0])
-			tx.To = fmt.Sprintf("user.basic.%03d", n)
+			tx.To = fmt.Sprintf("user.basic.test%03d", n)
 			tx.Writes = append(tx.Writes, keys[1])
 		}
 	} else if strs[1] == "Read" {
@@ -204,6 +204,8 @@ func sendReplyList(q queue.Queue) {
 			}
 		} else if msg.Ty == types.EventGetMempoolSize {
 			msg.Reply(client.NewMessage("", 0, &types.MempoolSize{}))
+		} else if msg.Ty == types.EventDelTxList {
+			msg.ReplyErr("EventDelTxList", nil)
 		}
 	}
 }
