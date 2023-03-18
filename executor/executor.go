@@ -396,7 +396,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 				index++
 				continue
 			}
-			receipt, err := execute.execTx(exec, tx, index)
+			receipt, err := execute.execTx(exec, tx, true, index)
 			if api.IsAPIEnvError(err) {
 				msg.Reply(exec.client.NewMessage("", types.EventReceipts, err))
 				return
@@ -451,7 +451,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 					if hasConflict(j, rwSetArr[j].Writes, reads) && hasConflict(j, rwSetArr[j].Reads, writes) {
 						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
 					} else {
-						receipt, err := execute.execTx(exec, datas.Txs[j], j)
+						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
 						if err != nil {
 							receipts[j] = types.NewErrReceipt(err)
 						}
