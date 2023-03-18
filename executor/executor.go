@@ -8,19 +8,18 @@ package executor
 //store package store the world - state data
 import (
 	"fmt"
-	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
-	"runtime"
-	"strings"
-	"sync"
-	"time"
-
 	"github.com/33cn/chain33/client/api"
 	dbm "github.com/33cn/chain33/common/db"
 	clog "github.com/33cn/chain33/common/log"
 	log "github.com/33cn/chain33/common/log/log15"
+	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
 	"github.com/33cn/chain33/pluginmgr"
 	"github.com/33cn/chain33/rpc/grpcclient"
 	drivers "github.com/33cn/chain33/system/dapp"
+	"runtime"
+	"strings"
+	"sync"
+	"time"
 
 	// register drivers
 	"github.com/33cn/chain33/client"
@@ -57,6 +56,16 @@ type RWSet struct {
 	Reads  []string
 	Writes []string
 }
+
+type TxInfo struct {
+	In      int
+	Depends map[int]bool
+	Outs    map[int]bool
+	Done    bool
+	Mu      sync.Mutex
+}
+
+var count int32
 
 func execInit(cfg *typ.Chain33Config) {
 	pluginmgr.InitExec(cfg)
@@ -302,27 +311,6 @@ func GetStack() string {
 	return fmt.Sprintf("==> %s\n", string(buf[:n]))
 }
 
-func updateMinIndex(keys []string, set *sync.Map, stateLockMap *sync.Map, i int) {
-	if len(keys) != 0 {
-		for _, r := range keys {
-			v, _ := stateLockMap.LoadOrStore(r, &sync.Mutex{})
-			if mu, ok := v.(*sync.Mutex); ok {
-				mu.Lock()
-				if idx, ok := set.Load(r); ok {
-					if j, o := idx.(int); o {
-						if i < j {
-							set.Store(r, i)
-						}
-					}
-				} else {
-					set.Store(r, i)
-				}
-				mu.Unlock()
-			}
-		}
-	}
-}
-
 func (exec *Executor) procExecTxList(msg *queue.Message) {
 	//panic 处理
 	defer func() {
@@ -353,14 +341,12 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	index := 0
 
 	wg := sync.WaitGroup{}
-	syncMap := &sync.Map{}
-	reads := &sync.Map{}
-	writes := &sync.Map{}
+	keyMap := make(map[string]int)
 	parallelTxs := &sync.Map{}
 	hasParallelTx := false
 	rwSetArr := make([]RWSet, len(datas.Txs))
+	txs := make([]*TxInfo, len(datas.Txs))
 
-	bT := time.Now()
 	for i := 0; i < len(datas.Txs); i++ {
 		tx := datas.Txs[i]
 		//检查groupcount
@@ -384,11 +370,11 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 									Reads:  rs,
 									Writes: ws,
 								}
+								txs[i] = &TxInfo{}
 							}
 						}
 					}
-					updateMinIndex(rwSetArr[i].Reads, reads, syncMap, i)
-					updateMinIndex(rwSetArr[i].Writes, writes, syncMap, i)
+
 					parallelTxs.Store(i, true)
 					hasParallelTx = true
 					receipts = append(receipts, &types.Receipt{})
@@ -396,7 +382,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 				index++
 				continue
 			}
-			receipt, err := execute.execTx(exec, tx, index)
+			receipt, err := execute.execTx(exec, tx, true, index)
 			if api.IsAPIEnvError(err) {
 				msg.Reply(exec.client.NewMessage("", types.EventReceipts, err))
 				return
@@ -440,44 +426,83 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	}
 	wg.Wait()
 	if hasParallelTx {
-		for i, _ := range receipts {
-			wg.Add(1)
-			func(j int) {
-				defer wg.Done()
-				if _, ok := parallelTxs.Load(j); ok {
-					if hasConflict(j, rwSetArr[j].Writes, writes) {
-						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
-					}
-					if hasConflict(j, rwSetArr[j].Writes, reads) && hasConflict(j, rwSetArr[j].Reads, writes) {
-						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
-					} else {
-						receipt, err := execute.execTx(exec, datas.Txs[j], j)
-						if err != nil {
-							receipts[j] = types.NewErrReceipt(err)
+		bT := time.Now()
+		for idx, tx := range txs {
+			if tx != nil {
+				for _, r := range rwSetArr[idx].Reads {
+					if keyMap[r] != 0 {
+						if len(tx.Depends) == 0 {
+							tx.Depends = make(map[int]bool, 4)
 						}
-						receipts[j] = receipt
+						if !tx.Depends[keyMap[r]] {
+							tx.In++
+							tx.Depends[keyMap[r]] = true
+						}
 					}
 				}
-			}(i)
+				for _, w := range rwSetArr[idx].Writes {
+					keyMap[w] = idx
+				}
+			}
+		}
+		for idx, tx := range txs {
+			if tx != nil {
+				for j, _ := range tx.Depends {
+					if len(txs[j].Outs) == 0 {
+						txs[j].Outs = make(map[int]bool, 4)
+					}
+					txs[j].Outs[idx] = true
+				}
+			}
+		}
+		et := time.Since(bT)
+		elog.Info("Get DAG", "runtime", et)
+
+		for idx, tx := range txs {
+			if tx != nil {
+				if tx.In == 0 {
+					wg.Add(1)
+					func(i int) {
+						defer wg.Done()
+						exec.startTx(i, execute, receipts, tx, txs, datas.Txs, wg)
+					}(idx)
+				}
+			}
 		}
 		wg.Wait()
 	}
-	et := time.Since(bT)
-	elog.Info("Get RwSet", "runtime", et)
 	msg.Reply(exec.client.NewMessage("", types.EventReceipts,
 		&types.Receipts{Receipts: receipts}))
 }
 
-func hasConflict(idx int, keys []string, records *sync.Map) bool {
-	for _, key := range keys {
-		if min, okk := records.Load(key); okk {
-			m, _ := min.(int)
-			if idx > m {
-				return true
-			}
+func (exec *Executor) startTx(idx int, execute *executor, receipts []*types.Receipt, tx *TxInfo, infos []*TxInfo, txs []*types.Transaction, wg sync.WaitGroup) {
+
+	receipt, err := execute.execTx(exec, txs[idx], false, idx)
+	tx.Done = true
+	if err != nil {
+		receipts[idx] = types.NewErrReceipt(err)
+	}
+	receipts[idx] = receipt
+
+	for o, flag := range tx.Outs {
+		if flag {
+			wg.Add(1)
+			func(j int) {
+				defer wg.Done()
+				tx.Outs[j] = false
+				infos[j].Mu.Lock()
+				if infos[j].In > 0 {
+					infos[j].In--
+				}
+				if infos[j].In == 0 && !infos[j].Done {
+					infos[j].Mu.Unlock()
+					exec.startTx(j, execute, receipts, infos[j], infos, txs, wg)
+				} else {
+					infos[j].Mu.Unlock()
+				}
+			}(o)
 		}
 	}
-	return false
 }
 
 func (exec *Executor) procExecAddBlock(msg *queue.Message) {
