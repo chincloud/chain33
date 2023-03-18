@@ -8,6 +8,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	cryptocli "github.com/33cn/chain33/common/crypto/client"
 	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
 	"github.com/33cn/chain33/system/dapp"
 	"io"
@@ -72,7 +73,7 @@ func TestPbft(t *testing.T) {
 	defer wallet.Close()
 	time.Sleep(5 * time.Second)
 
-	initData("./tx_zipf_0.7_ycsb_f.data")
+	initData("./tx_zipf_0.3_ycsb_f_100000.data")
 	sendReplyList(q)
 	clearTestData()
 }
@@ -163,6 +164,8 @@ func initEnvPbft() (queue.Queue, *blockchain.BlockChain, *p2p.Manager, queue.Mod
 	cfg.Log.LogFile = ""
 	sub := chain33Cfg.GetSubConfig()
 
+	crypto := cryptocli.New()
+	crypto.SetQueueClient(q.Client())
 	chain := blockchain.New(chain33Cfg)
 	chain.SetQueueClient(q.Client())
 	exec := executor.New(chain33Cfg)

@@ -342,7 +342,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 
 	wg := sync.WaitGroup{}
 	keyMap := make(map[string]int)
-	parallelTxs := &sync.Map{}
 	hasParallelTx := false
 	rwSetArr := make([]RWSet, len(datas.Txs))
 	txs := make([]*TxInfo, len(datas.Txs))
@@ -375,7 +374,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 						}
 					}
 
-					parallelTxs.Store(i, true)
 					hasParallelTx = true
 					receipts = append(receipts, &types.Receipt{})
 				}(index)
