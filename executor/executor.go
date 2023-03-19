@@ -58,7 +58,7 @@ type RWSet struct {
 }
 
 type TxInfo struct {
-	In      int
+	In      int32
 	Depends map[int]bool
 	Outs    map[int]bool
 	Done    bool
@@ -430,7 +430,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 				for _, r := range rwSetArr[idx].Reads {
 					if keyMap[r] != 0 {
 						if len(tx.Depends) == 0 {
-							tx.Depends = make(map[int]bool, 4)
+							tx.Depends = make(map[int]bool)
 						}
 						if !tx.Depends[keyMap[r]] {
 							tx.In++
@@ -439,6 +439,15 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 					}
 				}
 				for _, w := range rwSetArr[idx].Writes {
+					if keyMap[w] != 0 {
+						if len(tx.Depends) == 0 {
+							tx.Depends = make(map[int]bool)
+						}
+						if !tx.Depends[keyMap[w]] {
+							tx.In++
+							tx.Depends[keyMap[w]] = true
+						}
+					}
 					keyMap[w] = idx
 				}
 			}
@@ -447,7 +456,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 			if tx != nil {
 				for j, _ := range tx.Depends {
 					if len(txs[j].Outs) == 0 {
-						txs[j].Outs = make(map[int]bool, 4)
+						txs[j].Outs = make(map[int]bool)
 					}
 					txs[j].Outs[idx] = true
 				}
@@ -456,17 +465,23 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 		et := time.Since(bT)
 		elog.Info("Get DAG", "runtime", et)
 
-		for idx, tx := range txs {
-			if tx != nil {
-				if tx.In == 0 {
-					wg.Add(1)
-					func(i int) {
-						defer wg.Done()
-						exec.startTx(i, execute, receipts, tx, txs, datas.Txs, wg)
-					}(idx)
+		for idx, _ := range txs {
+			//if tx != nil {
+			wg.Add(1)
+			func(i int) {
+				defer wg.Done()
+				txs[i].Mu.Lock()
+				if txs[i].In == 0 && !txs[i].Done {
+					txs[i].Done = true
+					txs[i].Mu.Unlock()
+					exec.startTx(i, execute, receipts, txs[i], txs, datas.Txs, wg)
+				} else {
+					txs[i].Mu.Unlock()
 				}
-			}
+			}(idx)
+			//}
 		}
+		//fmt.Println(count)
 		wg.Wait()
 	}
 	msg.Reply(exec.client.NewMessage("", types.EventReceipts,
@@ -476,23 +491,25 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 func (exec *Executor) startTx(idx int, execute *executor, receipts []*types.Receipt, tx *TxInfo, infos []*TxInfo, txs []*types.Transaction, wg sync.WaitGroup) {
 
 	receipt, err := execute.execTx(exec, txs[idx], false, idx)
-	tx.Done = true
+	//atomic.AddInt32(&count, 1)
 	if err != nil {
 		receipts[idx] = types.NewErrReceipt(err)
 	}
 	receipts[idx] = receipt
 
-	for o, flag := range tx.Outs {
-		if flag {
+	func(t *TxInfo) {
+		for o, _ := range t.Outs {
 			wg.Add(1)
 			func(j int) {
 				defer wg.Done()
-				tx.Outs[j] = false
 				infos[j].Mu.Lock()
+				tx.Outs[j] = false
 				if infos[j].In > 0 {
 					infos[j].In--
 				}
+				//newInt := atomic.AddInt32(&infos[j].In, -1)
 				if infos[j].In == 0 && !infos[j].Done {
+					infos[j].Done = true
 					infos[j].Mu.Unlock()
 					exec.startTx(j, execute, receipts, infos[j], infos, txs, wg)
 				} else {
@@ -500,7 +517,7 @@ func (exec *Executor) startTx(idx int, execute *executor, receipts []*types.Rece
 				}
 			}(o)
 		}
-	}
+	}(tx)
 }
 
 func (exec *Executor) procExecAddBlock(msg *queue.Message) {
