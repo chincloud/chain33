@@ -19,7 +19,7 @@ import (
 	"runtime"
 	"strings"
 	"sync"
-	"time"
+	"sync/atomic"
 
 	// register drivers
 	"github.com/33cn/chain33/client"
@@ -64,8 +64,6 @@ type TxInfo struct {
 	Done    bool
 	Mu      sync.Mutex
 }
-
-var count int32
 
 func execInit(cfg *typ.Chain33Config) {
 	pluginmgr.InitExec(cfg)
@@ -340,7 +338,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	var receipts []*types.Receipt
 	index := 0
 
-	wg := sync.WaitGroup{}
+	wg := &sync.WaitGroup{}
 	keyMap := make(map[string]int)
 	hasParallelTx := false
 	rwSetArr := make([]RWSet, len(datas.Txs))
@@ -424,7 +422,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	}
 	wg.Wait()
 	if hasParallelTx {
-		bT := time.Now()
 		for idx, tx := range txs {
 			if tx != nil {
 				for _, r := range rwSetArr[idx].Reads {
@@ -462,62 +459,39 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 				}
 			}
 		}
-		et := time.Since(bT)
-		elog.Info("Get DAG", "runtime", et)
 
+		var hasNoIn []int
 		for idx, _ := range txs {
-			//if tx != nil {
-			wg.Add(1)
-			func(i int) {
-				defer wg.Done()
-				txs[i].Mu.Lock()
-				if txs[i].In == 0 && !txs[i].Done {
-					txs[i].Done = true
-					txs[i].Mu.Unlock()
-					exec.startTx(i, execute, receipts, txs[i], txs, datas.Txs, wg)
-				} else {
-					txs[i].Mu.Unlock()
-				}
-			}(idx)
-			//}
+			if txs[idx].In == 0 {
+				hasNoIn = append(hasNoIn, idx)
+			}
 		}
-		//fmt.Println(count)
+
+		wg.Add(len(txs))
+		for _, idx := range hasNoIn {
+			go exec.triggerTx(idx, execute, receipts, txs[idx], txs, datas.Txs, wg)
+		}
 		wg.Wait()
 	}
 	msg.Reply(exec.client.NewMessage("", types.EventReceipts,
 		&types.Receipts{Receipts: receipts}))
 }
 
-func (exec *Executor) startTx(idx int, execute *executor, receipts []*types.Receipt, tx *TxInfo, infos []*TxInfo, txs []*types.Transaction, wg sync.WaitGroup) {
+func (exec *Executor) triggerTx(idx int, execute *executor, receipts []*types.Receipt, tx *TxInfo, infos []*TxInfo, txs []*types.Transaction, wg *sync.WaitGroup) {
 
+	defer wg.Done()
 	receipt, err := execute.execTx(exec, txs[idx], false, idx)
-	//atomic.AddInt32(&count, 1)
 	if err != nil {
 		receipts[idx] = types.NewErrReceipt(err)
 	}
 	receipts[idx] = receipt
 
-	func(t *TxInfo) {
-		for o, _ := range t.Outs {
-			wg.Add(1)
-			func(j int) {
-				defer wg.Done()
-				infos[j].Mu.Lock()
-				tx.Outs[j] = false
-				if infos[j].In > 0 {
-					infos[j].In--
-				}
-				//newInt := atomic.AddInt32(&infos[j].In, -1)
-				if infos[j].In == 0 && !infos[j].Done {
-					infos[j].Done = true
-					infos[j].Mu.Unlock()
-					exec.startTx(j, execute, receipts, infos[j], infos, txs, wg)
-				} else {
-					infos[j].Mu.Unlock()
-				}
-			}(o)
+	for o, _ := range tx.Outs {
+		newInt := atomic.AddInt32(&infos[o].In, -1)
+		if newInt == 0 {
+			go exec.triggerTx(o, execute, receipts, infos[o], infos, txs, wg)
 		}
-	}(tx)
+	}
 }
 
 func (exec *Executor) procExecAddBlock(msg *queue.Message) {
