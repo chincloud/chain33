@@ -8,6 +8,7 @@ package executor
 //store package store the world - state data
 import (
 	"fmt"
+	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
 	"runtime"
 	"strings"
 	"sync"
@@ -49,6 +50,11 @@ type Executor struct {
 	pluginEnable     map[string]bool
 	alias            map[string]string
 	noneDriverPool   *sync.Pool
+}
+
+type RWSet struct {
+	Reads  []string
+	Writes []string
 }
 
 func execInit(cfg *typ.Chain33Config) {
@@ -323,6 +329,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	execute.enableMVCC(nil)
 	var receipts []*types.Receipt
 	index := 0
+	rwSetArr := make([]RWSet, len(datas.Txs))
 	for i := 0; i < len(datas.Txs); i++ {
 		tx := datas.Txs[i]
 		//检查groupcount
@@ -332,6 +339,19 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 		}
 		if tx.GroupCount == 0 {
 			receipt, err := execute.execTx(exec, tx, index)
+			driver := execute.loadDriver(tx, i)
+			if driver.GetDriverName() == "basic" {
+				basic, ok := driver.(*basic.Basic)
+				if ok {
+					rs, ws, err := basic.GetTxWritesAndReads(tx)
+					if err == nil {
+						rwSetArr[i] = RWSet{
+							Reads:  rs,
+							Writes: ws,
+						}
+					}
+				}
+			}
 			if api.IsAPIEnvError(err) {
 				msg.Reply(exec.client.NewMessage("", types.EventReceipts, err))
 				return
