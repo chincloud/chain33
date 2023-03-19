@@ -1,0 +1,1570 @@
+=== RUN   TestPbft
+[32mINFO[0m[03-19|14:49:57] init::LoadBlockStoreHeight::database may be crash [32mmodule[0m=blockchain [32merr[0m=ErrHeightNotExist
+[32mINFO[0m[03-19|14:49:57] load block height error, may be init database [32mmodule[0m=blockchain [32mheight[0m=-1
+[32mINFO[0m[03-19|14:49:57] InitIndexAndBestView                     [32mmodule[0m=blockchain [32mcost[0m=13.655µs
+[32mINFO[0m[03-19|14:49:57] GetDbVersion len(version)==0             [32mmodule[0m=blockchain [32msubmodule[0m=store
+[32mINFO[0m[03-19|14:49:57] SetDbVersion                             [32mmodule[0m=blockchain [32msubmodule[0m=store [32mblcokchain db version[0m=1
+[31mEROR[0m[03-19|14:49:57] GetLastTempBlockHeight                   [31mmodule[0m=blockchain [31merr[0m=ErrNotFound
+[32mINFO[0m[03-19|14:49:57] FastDownLoadBlocks                       [32mmodule[0m=blockchain [32msubmodule[0m=syn [32mcurHeight[0m=-1 [32mlastTempHight[0m=-1
+[32mINFO[0m[03-19|14:49:57] FastDownLoadBlocks:waitTimeDownLoad:quit! [32mmodule[0m=blockchain [32msubmodule[0m=syn [32mcurheight[0m=-1 [32mpeerMaxBlkHeight[0m=-1 [32mpids[0m=[]
+[32mINFO[0m[03-19|14:49:57] Enter store mavl                         [32mmodule[0m=store
+[32mINFO[0m[03-19|14:49:57] start to creat pbft node                 [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:49:57] Enter consensus pbft 
+[32mINFO[0m[03-19|14:49:57] Enter SetQueue method of pbft consensus  [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:49:57] Enter SetQueueClient method of consensus 
+[32mINFO[0m[03-19|14:49:57] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=0 [32mExecTx[0m=912.845µs
+[32mINFO[0m[03-19|14:49:57] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=0 [32mWaitDupCheck[0m=950ns
+[32mINFO[0m[03-19|14:49:57] ExecBlock                                [32mmodule[0m=util [32mheight[0m=0 [32mntx[0m=1 [32mwritebatchsync[0m=true [32mcost[0m=1.73922ms
+[32mINFO[0m[03-19|14:49:57] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=856.434µs [32msaveBlk[0m=163.776µs [32mcacheBlk[0m=18.436µs [32mwriteBatch[0m=236.372µs
+[32mINFO[0m[03-19|14:49:57] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=0 [32mtxCount[0m=1 [32mrecvFrom[0m=self [32mcost[0m=5.00372ms
+[32mINFO[0m[03-19|14:49:57] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=221ns
+[32mINFO[0m[03-19|14:49:57] NewMulti                                 [32mmodule[0m=dht [32maddr[0m=/ip4/0.0.0.0/tcp/13803
+[31mEROR[0m[03-19|14:49:57] LoadAddrsInfo                            [31mmodule[0m=dht [31m Get addrkeyTag[0m=ErrNotFound
+[32mINFO[0m[03-19|14:49:57] NewP2p                                   [32mmodule[0m=dht [32mpeerId[0m=16Uiu2HAmKhEg53d41Hncm6oeksy8U5wjxrqSUYWvJKSvRRpCXnkF [32maddrs[0m="[/ip4/211.81.55.171/tcp/13803 /ip4/127.0.0.1/tcp/13803]"
+[31mEROR[0m[03-19|14:49:57] getChunkRecord                           [31mmodule[0m=blockchain [31mreq[0m= [31merr[0m=ErrNotFound
+[32mINFO[0m[03-19|14:49:57] updateExtendRoutingTable                 [32mmodule[0m=protocol.p2pstore [32mpid[0m=16Uiu2HAmKhEg53d41Hncm6oeksy8U5wjxrqSUYWvJKSvRRpCXnkF [32mlocal peers count[0m=0 [32mextendRoutingTable peer count[0m=0 [32mtime cost[0m=53.124µs
+[31mEROR[0m[03-19|14:49:57] GetSLIP0044CoinType:  not exist. 
+[32mINFO[0m[03-19|14:50:07] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=397.535µs
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=1 [32mExecTx[0m=19.750531ms
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=1 [32mWaitDupCheck[0m=514ns
+[32mINFO[0m[03-19|14:50:07] ExecBlock                                [32mmodule[0m=util [32mheight[0m=1 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=28.038084ms
+[32mINFO[0m[03-19|14:50:07] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.986554ms [32msaveBlk[0m=6.670398ms [32mcacheBlk[0m=106.281µs [32mwriteBatch[0m=18.352041ms
+[32mINFO[0m[03-19|14:50:07] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=1 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=81.455101ms
+[32mINFO[0m[03-19|14:50:07] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=98ns
+[32mINFO[0m[03-19|14:50:07] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=399.858µs
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=2 [32mExecTx[0m=36.47604ms
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=2 [32mWaitDupCheck[0m=644ns
+[32mINFO[0m[03-19|14:50:07] ExecBlock                                [32mmodule[0m=util [32mheight[0m=2 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=46.311381ms
+[32mINFO[0m[03-19|14:50:07] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.511781ms [32msaveBlk[0m=2.307784ms [32mcacheBlk[0m=42.099µs [32mwriteBatch[0m=13.709463ms
+[32mINFO[0m[03-19|14:50:07] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=2 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=85.794939ms
+[32mINFO[0m[03-19|14:50:07] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=97ns
+[32mINFO[0m[03-19|14:50:07] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=373.185µs
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=3 [32mExecTx[0m=36.535206ms
+[32mINFO[0m[03-19|14:50:07] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=3 [32mWaitDupCheck[0m=683ns
+[32mINFO[0m[03-19|14:50:07] ExecBlock                                [32mmodule[0m=util [32mheight[0m=3 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.690483ms
+[32mINFO[0m[03-19|14:50:07] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.109869ms [32msaveBlk[0m=3.416769ms [32mcacheBlk[0m=19.568µs [32mwriteBatch[0m=12.528333ms
+[32mINFO[0m[03-19|14:50:07] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=3 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=97.641165ms
+[32mINFO[0m[03-19|14:50:07] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=79ns
+[32mINFO[0m[03-19|14:50:07] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:07] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=474.421µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=4 [32mExecTx[0m=38.176993ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=4 [32mWaitDupCheck[0m=519ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=4 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=60.147284ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.307747ms [32msaveBlk[0m=3.551075ms [32mcacheBlk[0m=51.512µs [32mwriteBatch[0m=17.816566ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=4 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.716993ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=82ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=540.846µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=5 [32mExecTx[0m=39.303828ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=5 [32mWaitDupCheck[0m=670ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=5 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=63.153612ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.251108ms [32msaveBlk[0m=2.359377ms [32mcacheBlk[0m=31.69µs [32mwriteBatch[0m=16.214064ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=5 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.969567ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=315ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=441.279µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=6 [32mExecTx[0m=42.94295ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=6 [32mWaitDupCheck[0m=945ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=6 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=61.270436ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.779393ms [32msaveBlk[0m=4.113618ms [32mcacheBlk[0m=14.492µs [32mwriteBatch[0m=14.462251ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=6 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=103.541481ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=110ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=363.328µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=7 [32mExecTx[0m=35.699558ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=7 [32mWaitDupCheck[0m=912ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=7 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=61.060758ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.798973ms [32msaveBlk[0m=2.222018ms [32mcacheBlk[0m=37.544µs [32mwriteBatch[0m=17.375951ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=7 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.321946ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=176ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=403.894µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=8 [32mExecTx[0m=42.04286ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=8 [32mWaitDupCheck[0m=439ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=8 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=68.730704ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.786387ms [32msaveBlk[0m=2.109683ms [32mcacheBlk[0m=31.864µs [32mwriteBatch[0m=18.890779ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=8 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.445464ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=80ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=368.342µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=9 [32mExecTx[0m=40.147327ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=9 [32mWaitDupCheck[0m=299ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=9 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=57.77116ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.145026ms [32msaveBlk[0m=1.863951ms [32mcacheBlk[0m=17.566µs [32mwriteBatch[0m=12.348826ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=9 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=95.971471ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=298.704µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=10 [32mExecTx[0m=33.600979ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=10 [32mWaitDupCheck[0m=804ns
+[32mINFO[0m[03-19|14:50:08] ExecBlock                                [32mmodule[0m=util [32mheight[0m=10 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=50.524929ms
+[32mINFO[0m[03-19|14:50:08] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.441589ms [32msaveBlk[0m=2.176416ms [32mcacheBlk[0m=31.439µs [32mwriteBatch[0m=16.488066ms
+[32mINFO[0m[03-19|14:50:08] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=10 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=93.522927ms
+[32mINFO[0m[03-19|14:50:08] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=95ns
+[32mINFO[0m[03-19|14:50:08] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:08] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=398.314µs
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=11 [32mExecTx[0m=39.00091ms
+[32mINFO[0m[03-19|14:50:08] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=11 [32mWaitDupCheck[0m=373ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=11 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=63.221203ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.399672ms [32msaveBlk[0m=2.159341ms [32mcacheBlk[0m=29.126µs [32mwriteBatch[0m=18.382854ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=11 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.997355ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=111ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=1.299958ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=12 [32mExecTx[0m=63.625236ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=12 [32mWaitDupCheck[0m=547ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=12 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=91.679444ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.739594ms [32msaveBlk[0m=2.146845ms [32mcacheBlk[0m=15.55µs [32mwriteBatch[0m=12.228153ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=12 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=132.821421ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=111ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=372.437µs
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=13 [32mExecTx[0m=35.478852ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=13 [32mWaitDupCheck[0m=595ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=13 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.049314ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.092305ms [32msaveBlk[0m=2.360508ms [32mcacheBlk[0m=31.293µs [32mwriteBatch[0m=24.297074ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=13 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=108.650394ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=76ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=402.493µs
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=14 [32mExecTx[0m=46.95037ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=14 [32mWaitDupCheck[0m=945ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=14 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=73.564381ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.02091ms [32msaveBlk[0m=3.411979ms [32mcacheBlk[0m=14.911µs [32mwriteBatch[0m=17.105904ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=14 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=118.062789ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=81ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=339.451µs
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=15 [32mExecTx[0m=36.497878ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=15 [32mWaitDupCheck[0m=618ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=15 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=52.293486ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.094234ms [32msaveBlk[0m=1.870338ms [32mcacheBlk[0m=19.25µs [32mwriteBatch[0m=11.475448ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=15 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=90.619474ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=82ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=425.638µs
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=16 [32mExecTx[0m=43.760119ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=16 [32mWaitDupCheck[0m=811ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=16 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.507109ms
+[32mINFO[0m[03-19|14:50:09] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.639107ms [32msaveBlk[0m=2.187389ms [32mcacheBlk[0m=32.568µs [32mwriteBatch[0m=20.786288ms
+[32mINFO[0m[03-19|14:50:09] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=16 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.552426ms
+[32mINFO[0m[03-19|14:50:09] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=114ns
+[32mINFO[0m[03-19|14:50:09] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:09] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=439.224µs
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=17 [32mExecTx[0m=42.057633ms
+[32mINFO[0m[03-19|14:50:09] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=17 [32mWaitDupCheck[0m=386ns
+[32mINFO[0m[03-19|14:50:09] ExecBlock                                [32mmodule[0m=util [32mheight[0m=17 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.242889ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.419953ms [32msaveBlk[0m=3.053189ms [32mcacheBlk[0m=15.741µs [32mwriteBatch[0m=13.839375ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=17 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=108.542884ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=172ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=439.981µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=18 [32mExecTx[0m=45.460894ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=18 [32mWaitDupCheck[0m=728ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=18 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.59417ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.662714ms [32msaveBlk[0m=2.815187ms [32mcacheBlk[0m=33.584µs [32mwriteBatch[0m=14.147918ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=18 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.089018ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=100ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=362.513µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=19 [32mExecTx[0m=39.051254ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=19 [32mWaitDupCheck[0m=874ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=19 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=61.612351ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.582605ms [32msaveBlk[0m=2.451287ms [32mcacheBlk[0m=33.699µs [32mwriteBatch[0m=14.495153ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=19 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=102.164786ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=122ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=453.445µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=20 [32mExecTx[0m=44.496726ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=20 [32mWaitDupCheck[0m=355ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=20 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.769459ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.290645ms [32msaveBlk[0m=2.209461ms [32mcacheBlk[0m=35.668µs [32mwriteBatch[0m=14.098202ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=20 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.151989ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=83ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=407.448µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=21 [32mExecTx[0m=39.343537ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=21 [32mWaitDupCheck[0m=634ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=21 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=60.434788ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.272171ms [32msaveBlk[0m=2.241209ms [32mcacheBlk[0m=35.109µs [32mwriteBatch[0m=15.493399ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=21 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=102.256396ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=97ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=401.088µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=22 [32mExecTx[0m=38.137084ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=22 [32mWaitDupCheck[0m=422ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=22 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=56.682733ms
+[32mINFO[0m[03-19|14:50:10] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.335162ms [32msaveBlk[0m=3.631897ms [32mcacheBlk[0m=15.58µs [32mwriteBatch[0m=8.984019ms
+[32mINFO[0m[03-19|14:50:10] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=22 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=93.407052ms
+[32mINFO[0m[03-19|14:50:10] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=94ns
+[32mINFO[0m[03-19|14:50:10] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:10] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=346.735µs
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=23 [32mExecTx[0m=36.908725ms
+[32mINFO[0m[03-19|14:50:10] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=23 [32mWaitDupCheck[0m=818ns
+[32mINFO[0m[03-19|14:50:10] ExecBlock                                [32mmodule[0m=util [32mheight[0m=23 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=57.515485ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.850762ms [32msaveBlk[0m=2.260982ms [32mcacheBlk[0m=34.852µs [32mwriteBatch[0m=16.349326ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=23 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=102.882533ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=100ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=379.56µs
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=24 [32mExecTx[0m=39.653294ms
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=24 [32mWaitDupCheck[0m=391ns
+[32mINFO[0m[03-19|14:50:11] ExecBlock                                [32mmodule[0m=util [32mheight[0m=24 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=59.29625ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.262757ms [32msaveBlk[0m=2.250519ms [32mcacheBlk[0m=12.77µs [32mwriteBatch[0m=14.535287ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=24 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=100.165801ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=95ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=403.55µs
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=25 [32mExecTx[0m=42.398607ms
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=25 [32mWaitDupCheck[0m=786ns
+[32mINFO[0m[03-19|14:50:11] ExecBlock                                [32mmodule[0m=util [32mheight[0m=25 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=61.897868ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.709542ms [32msaveBlk[0m=2.350614ms [32mcacheBlk[0m=16.224µs [32mwriteBatch[0m=18.048857ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=25 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.911573ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=126ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=370.99µs
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=26 [32mExecTx[0m=38.316339ms
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=26 [32mWaitDupCheck[0m=592ns
+[32mINFO[0m[03-19|14:50:11] ExecBlock                                [32mmodule[0m=util [32mheight[0m=26 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.011ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.348838ms [32msaveBlk[0m=3.834057ms [32mcacheBlk[0m=13.283µs [32mwriteBatch[0m=15.771374ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=26 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=108.796829ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=94ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=349.918µs
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=27 [32mExecTx[0m=35.995043ms
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=27 [32mWaitDupCheck[0m=478ns
+[32mINFO[0m[03-19|14:50:11] ExecBlock                                [32mmodule[0m=util [32mheight[0m=27 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=76.732044ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.535935ms [32msaveBlk[0m=2.295473ms [32mcacheBlk[0m=35.894µs [32mwriteBatch[0m=17.317323ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=27 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=121.880165ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=268ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=382.685µs
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=28 [32mExecTx[0m=39.211422ms
+[32mINFO[0m[03-19|14:50:11] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=28 [32mWaitDupCheck[0m=787ns
+[32mINFO[0m[03-19|14:50:11] ExecBlock                                [32mmodule[0m=util [32mheight[0m=28 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.043961ms
+[32mINFO[0m[03-19|14:50:11] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.33346ms [32msaveBlk[0m=2.07318ms [32mcacheBlk[0m=5.939µs [32mwriteBatch[0m=13.112224ms
+[32mINFO[0m[03-19|14:50:11] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=28 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=96.53057ms
+[32mINFO[0m[03-19|14:50:11] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=117ns
+[32mINFO[0m[03-19|14:50:11] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:11] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=358.61µs
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=29 [32mExecTx[0m=37.685928ms
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=29 [32mWaitDupCheck[0m=380ns
+[32mINFO[0m[03-19|14:50:12] ExecBlock                                [32mmodule[0m=util [32mheight[0m=29 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=62.767772ms
+[32mINFO[0m[03-19|14:50:12] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.519283ms [32msaveBlk[0m=2.179246ms [32mcacheBlk[0m=47.309µs [32mwriteBatch[0m=16.273385ms
+[32mINFO[0m[03-19|14:50:12] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=29 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.695935ms
+[32mINFO[0m[03-19|14:50:12] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=99ns
+[32mINFO[0m[03-19|14:50:12] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=381.202µs
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=30 [32mExecTx[0m=38.17901ms
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=30 [32mWaitDupCheck[0m=585ns
+[32mINFO[0m[03-19|14:50:12] ExecBlock                                [32mmodule[0m=util [32mheight[0m=30 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.163364ms
+[32mINFO[0m[03-19|14:50:12] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.051949ms [32msaveBlk[0m=1.818383ms [32mcacheBlk[0m=17.107µs [32mwriteBatch[0m=13.731925ms
+[32mINFO[0m[03-19|14:50:12] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=30 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=99.667727ms
+[32mINFO[0m[03-19|14:50:12] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=97ns
+[32mINFO[0m[03-19|14:50:12] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=388.909µs
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=31 [32mExecTx[0m=39.302418ms
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=31 [32mWaitDupCheck[0m=388ns
+[32mINFO[0m[03-19|14:50:12] ExecBlock                                [32mmodule[0m=util [32mheight[0m=31 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.284127ms
+[32mINFO[0m[03-19|14:50:12] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.868662ms [32msaveBlk[0m=2.181275ms [32mcacheBlk[0m=12.895µs [32mwriteBatch[0m=17.665126ms
+[32mINFO[0m[03-19|14:50:12] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=31 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=111.846801ms
+[32mINFO[0m[03-19|14:50:12] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=103ns
+[32mINFO[0m[03-19|14:50:12] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=434.781µs
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=32 [32mExecTx[0m=47.515715ms
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=32 [32mWaitDupCheck[0m=814ns
+[32mINFO[0m[03-19|14:50:12] ExecBlock                                [32mmodule[0m=util [32mheight[0m=32 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=70.645849ms
+[32mINFO[0m[03-19|14:50:12] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.169038ms [32msaveBlk[0m=4.030906ms [32mcacheBlk[0m=14.784µs [32mwriteBatch[0m=20.001633ms
+[32mINFO[0m[03-19|14:50:12] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=32 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=118.904327ms
+[32mINFO[0m[03-19|14:50:12] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=139ns
+[32mINFO[0m[03-19|14:50:12] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=367.082µs
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=33 [32mExecTx[0m=39.011739ms
+[32mINFO[0m[03-19|14:50:12] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=33 [32mWaitDupCheck[0m=352ns
+[32mINFO[0m[03-19|14:50:12] ExecBlock                                [32mmodule[0m=util [32mheight[0m=33 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.134811ms
+[32mINFO[0m[03-19|14:50:12] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.998512ms [32msaveBlk[0m=2.239252ms [32mcacheBlk[0m=13.147µs [32mwriteBatch[0m=20.014951ms
+[32mINFO[0m[03-19|14:50:12] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=33 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.234171ms
+[32mINFO[0m[03-19|14:50:12] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=93ns
+[32mINFO[0m[03-19|14:50:12] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:12] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=391.103µs
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=34 [32mExecTx[0m=41.923584ms
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=34 [32mWaitDupCheck[0m=1.133µs
+[32mINFO[0m[03-19|14:50:13] ExecBlock                                [32mmodule[0m=util [32mheight[0m=34 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=68.798683ms
+[32mINFO[0m[03-19|14:50:13] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=27.033851ms [32msaveBlk[0m=2.12796ms [32mcacheBlk[0m=16.636µs [32mwriteBatch[0m=11.866937ms
+[32mINFO[0m[03-19|14:50:13] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=34 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.863911ms
+[32mINFO[0m[03-19|14:50:13] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=91ns
+[32mINFO[0m[03-19|14:50:13] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=417.34µs
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=35 [32mExecTx[0m=43.574453ms
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=35 [32mWaitDupCheck[0m=442ns
+[32mINFO[0m[03-19|14:50:13] ExecBlock                                [32mmodule[0m=util [32mheight[0m=35 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=63.462054ms
+[32mINFO[0m[03-19|14:50:13] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.192994ms [32msaveBlk[0m=5.070282ms [32mcacheBlk[0m=32.503µs [32mwriteBatch[0m=9.638663ms
+[32mINFO[0m[03-19|14:50:13] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=35 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=103.2603ms
+[32mINFO[0m[03-19|14:50:13] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=155ns
+[32mINFO[0m[03-19|14:50:13] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=626.422µs
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=36 [32mExecTx[0m=44.419033ms
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=36 [32mWaitDupCheck[0m=889ns
+[32mINFO[0m[03-19|14:50:13] ExecBlock                                [32mmodule[0m=util [32mheight[0m=36 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=63.71405ms
+[32mINFO[0m[03-19|14:50:13] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.147711ms [32msaveBlk[0m=2.116498ms [32mcacheBlk[0m=17.192µs [32mwriteBatch[0m=7.528941ms
+[32mINFO[0m[03-19|14:50:13] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=36 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=98.765851ms
+[32mINFO[0m[03-19|14:50:13] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=87ns
+[32mINFO[0m[03-19|14:50:13] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=398.375µs
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=37 [32mExecTx[0m=42.727026ms
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=37 [32mWaitDupCheck[0m=598ns
+[32mINFO[0m[03-19|14:50:13] ExecBlock                                [32mmodule[0m=util [32mheight[0m=37 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=69.968297ms
+[32mINFO[0m[03-19|14:50:13] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.124773ms [32msaveBlk[0m=1.949111ms [32mcacheBlk[0m=20.053µs [32mwriteBatch[0m=9.701103ms
+[32mINFO[0m[03-19|14:50:13] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=37 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=104.858944ms
+[32mINFO[0m[03-19|14:50:13] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=74ns
+[32mINFO[0m[03-19|14:50:13] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:13] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=399.781µs
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=38 [32mExecTx[0m=40.78105ms
+[32mINFO[0m[03-19|14:50:13] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=38 [32mWaitDupCheck[0m=1.021µs
+[32mINFO[0m[03-19|14:50:13] ExecBlock                                [32mmodule[0m=util [32mheight[0m=38 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.919673ms
+[32mINFO[0m[03-19|14:50:14] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.035734ms [32msaveBlk[0m=1.944089ms [32mcacheBlk[0m=7.153µs [32mwriteBatch[0m=9.479149ms
+[32mINFO[0m[03-19|14:50:14] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=38 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=102.429709ms
+[32mINFO[0m[03-19|14:50:14] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=93ns
+[32mINFO[0m[03-19|14:50:14] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=423.998µs
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=39 [32mExecTx[0m=40.762293ms
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=39 [32mWaitDupCheck[0m=417ns
+[32mINFO[0m[03-19|14:50:14] ExecBlock                                [32mmodule[0m=util [32mheight[0m=39 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=68.695258ms
+[32mINFO[0m[03-19|14:50:14] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.717058ms [32msaveBlk[0m=5.608289ms [32mcacheBlk[0m=11.386µs [32mwriteBatch[0m=11.87865ms
+[32mINFO[0m[03-19|14:50:14] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=39 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.83238ms
+[32mINFO[0m[03-19|14:50:14] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=86ns
+[32mINFO[0m[03-19|14:50:14] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=439.267µs
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=40 [32mExecTx[0m=42.605318ms
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=40 [32mWaitDupCheck[0m=240ns
+[32mINFO[0m[03-19|14:50:14] ExecBlock                                [32mmodule[0m=util [32mheight[0m=40 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.289017ms
+[32mINFO[0m[03-19|14:50:14] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=27.478184ms [32msaveBlk[0m=2.828518ms [32mcacheBlk[0m=34.35µs [32mwriteBatch[0m=17.0551ms
+[32mINFO[0m[03-19|14:50:14] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=40 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.69202ms
+[32mINFO[0m[03-19|14:50:14] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=94ns
+[32mINFO[0m[03-19|14:50:14] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=384.226µs
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=41 [32mExecTx[0m=38.195134ms
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=41 [32mWaitDupCheck[0m=577ns
+[32mINFO[0m[03-19|14:50:14] ExecBlock                                [32mmodule[0m=util [32mheight[0m=41 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.759703ms
+[32mINFO[0m[03-19|14:50:14] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=28.637248ms [32msaveBlk[0m=2.066754ms [32mcacheBlk[0m=5.291µs [32mwriteBatch[0m=11.277155ms
+[32mINFO[0m[03-19|14:50:14] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=41 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=101.642657ms
+[32mINFO[0m[03-19|14:50:14] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=101ns
+[32mINFO[0m[03-19|14:50:14] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=445.467µs
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=42 [32mExecTx[0m=47.502497ms
+[32mINFO[0m[03-19|14:50:14] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=42 [32mWaitDupCheck[0m=497ns
+[32mINFO[0m[03-19|14:50:14] ExecBlock                                [32mmodule[0m=util [32mheight[0m=42 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=79.742917ms
+[32mINFO[0m[03-19|14:50:14] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=44.57207ms [32msaveBlk[0m=2.57729ms [32mcacheBlk[0m=5.43µs [32mwriteBatch[0m=11.196363ms
+[32mINFO[0m[03-19|14:50:14] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=42 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=139.133966ms
+[32mINFO[0m[03-19|14:50:14] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=80ns
+[32mINFO[0m[03-19|14:50:14] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:14] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=334.402µs
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=43 [32mExecTx[0m=37.662212ms
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=43 [32mWaitDupCheck[0m=555ns
+[32mINFO[0m[03-19|14:50:15] ExecBlock                                [32mmodule[0m=util [32mheight[0m=43 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=56.161379ms
+[32mINFO[0m[03-19|14:50:15] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.803694ms [32msaveBlk[0m=3.559275ms [32mcacheBlk[0m=27.165µs [32mwriteBatch[0m=14.481908ms
+[32mINFO[0m[03-19|14:50:15] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=43 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=98.911383ms
+[32mINFO[0m[03-19|14:50:15] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=80ns
+[32mINFO[0m[03-19|14:50:15] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=374.56µs
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=44 [32mExecTx[0m=37.97758ms
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=44 [32mWaitDupCheck[0m=548ns
+[32mINFO[0m[03-19|14:50:15] ExecBlock                                [32mmodule[0m=util [32mheight[0m=44 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=59.522779ms
+[32mINFO[0m[03-19|14:50:15] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.391017ms [32msaveBlk[0m=2.977341ms [32mcacheBlk[0m=5.443µs [32mwriteBatch[0m=10.982932ms
+[32mINFO[0m[03-19|14:50:15] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=44 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=96.798521ms
+[32mINFO[0m[03-19|14:50:15] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=81ns
+[32mINFO[0m[03-19|14:50:15] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=343.077µs
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=45 [32mExecTx[0m=35.10382ms
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=45 [32mWaitDupCheck[0m=523ns
+[32mINFO[0m[03-19|14:50:15] ExecBlock                                [32mmodule[0m=util [32mheight[0m=45 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=62.149777ms
+[32mINFO[0m[03-19|14:50:15] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.282497ms [32msaveBlk[0m=2.227602ms [32mcacheBlk[0m=35.536µs [32mwriteBatch[0m=18.129809ms
+[32mINFO[0m[03-19|14:50:15] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=45 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=108.233614ms
+[32mINFO[0m[03-19|14:50:15] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=100ns
+[32mINFO[0m[03-19|14:50:15] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=360.508µs
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=46 [32mExecTx[0m=39.046645ms
+[32mINFO[0m[03-19|14:50:15] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=46 [32mWaitDupCheck[0m=494ns
+[32mINFO[0m[03-19|14:50:15] ExecBlock                                [32mmodule[0m=util [32mheight[0m=46 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.358661ms
+[32mINFO[0m[03-19|14:50:15] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.83739ms [32msaveBlk[0m=2.229007ms [32mcacheBlk[0m=14.746µs [32mwriteBatch[0m=14.688373ms
+[32mINFO[0m[03-19|14:50:15] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=46 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.051677ms
+[32mINFO[0m[03-19|14:50:15] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=112ns
+[32mINFO[0m[03-19|14:50:15] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:15] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=391.525µs
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=47 [32mExecTx[0m=38.594514ms
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=47 [32mWaitDupCheck[0m=896ns
+[32mINFO[0m[03-19|14:50:16] ExecBlock                                [32mmodule[0m=util [32mheight[0m=47 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=62.771459ms
+[32mINFO[0m[03-19|14:50:16] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.367246ms [32msaveBlk[0m=2.2536ms [32mcacheBlk[0m=36.709µs [32mwriteBatch[0m=20.791946ms
+[32mINFO[0m[03-19|14:50:16] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=47 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=111.171841ms
+[32mINFO[0m[03-19|14:50:16] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=103ns
+[32mINFO[0m[03-19|14:50:16] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=360.379µs
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=48 [32mExecTx[0m=36.333954ms
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=48 [32mWaitDupCheck[0m=1.531µs
+[32mINFO[0m[03-19|14:50:16] ExecBlock                                [32mmodule[0m=util [32mheight[0m=48 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=60.984296ms
+[32mINFO[0m[03-19|14:50:16] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.929437ms [32msaveBlk[0m=2.072754ms [32mcacheBlk[0m=27.739µs [32mwriteBatch[0m=15.476337ms
+[32mINFO[0m[03-19|14:50:16] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=48 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=103.476847ms
+[32mINFO[0m[03-19|14:50:16] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=74ns
+[32mINFO[0m[03-19|14:50:16] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=383.212µs
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=49 [32mExecTx[0m=40.616778ms
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=49 [32mWaitDupCheck[0m=1.232µs
+[32mINFO[0m[03-19|14:50:16] ExecBlock                                [32mmodule[0m=util [32mheight[0m=49 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.043076ms
+[32mINFO[0m[03-19|14:50:16] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.046103ms [32msaveBlk[0m=2.184207ms [32mcacheBlk[0m=14.499µs [32mwriteBatch[0m=15.920569ms
+[32mINFO[0m[03-19|14:50:16] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=49 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.126245ms
+[32mINFO[0m[03-19|14:50:16] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=203ns
+[32mINFO[0m[03-19|14:50:16] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=388.888µs
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=50 [32mExecTx[0m=41.738571ms
+[32mINFO[0m[03-19|14:50:16] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=50 [32mWaitDupCheck[0m=541ns
+[32mINFO[0m[03-19|14:50:16] ExecBlock                                [32mmodule[0m=util [32mheight[0m=50 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.14113ms
+[32mINFO[0m[03-19|14:50:16] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.92418ms [32msaveBlk[0m=2.744575ms [32mcacheBlk[0m=17.791µs [32mwriteBatch[0m=14.997367ms
+[32mINFO[0m[03-19|14:50:16] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=50 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=107.784694ms
+[32mINFO[0m[03-19|14:50:16] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=78ns
+[32mINFO[0m[03-19|14:50:16] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:16] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=397.387µs
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=51 [32mExecTx[0m=44.335145ms
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=51 [32mWaitDupCheck[0m=401ns
+[32mINFO[0m[03-19|14:50:17] ExecBlock                                [32mmodule[0m=util [32mheight[0m=51 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.898604ms
+[32mINFO[0m[03-19|14:50:17] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.53507ms [32msaveBlk[0m=3.740876ms [32mcacheBlk[0m=36.935µs [32mwriteBatch[0m=16.789903ms
+[32mINFO[0m[03-19|14:50:17] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=51 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.11472ms
+[32mINFO[0m[03-19|14:50:17] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=102ns
+[32mINFO[0m[03-19|14:50:17] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=400.845µs
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=52 [32mExecTx[0m=42.037007ms
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=52 [32mWaitDupCheck[0m=325ns
+[32mINFO[0m[03-19|14:50:17] ExecBlock                                [32mmodule[0m=util [32mheight[0m=52 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.753283ms
+[32mINFO[0m[03-19|14:50:17] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.01724ms [32msaveBlk[0m=5.022052ms [32mcacheBlk[0m=35.282µs [32mwriteBatch[0m=13.538948ms
+[32mINFO[0m[03-19|14:50:17] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=52 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.351689ms
+[32mINFO[0m[03-19|14:50:17] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=102ns
+[32mINFO[0m[03-19|14:50:17] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=376.895µs
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=53 [32mExecTx[0m=44.330774ms
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=53 [32mWaitDupCheck[0m=844ns
+[32mINFO[0m[03-19|14:50:17] ExecBlock                                [32mmodule[0m=util [32mheight[0m=53 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.429593ms
+[32mINFO[0m[03-19|14:50:17] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.636606ms [32msaveBlk[0m=5.102458ms [32mcacheBlk[0m=37.143µs [32mwriteBatch[0m=13.800464ms
+[32mINFO[0m[03-19|14:50:17] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=53 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=118.279508ms
+[32mINFO[0m[03-19|14:50:17] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=109ns
+[32mINFO[0m[03-19|14:50:17] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=374.521µs
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=54 [32mExecTx[0m=43.105829ms
+[32mINFO[0m[03-19|14:50:17] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=54 [32mWaitDupCheck[0m=730ns
+[32mINFO[0m[03-19|14:50:17] ExecBlock                                [32mmodule[0m=util [32mheight[0m=54 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=71.578956ms
+[32mINFO[0m[03-19|14:50:17] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.967927ms [32msaveBlk[0m=3.713941ms [32mcacheBlk[0m=5.487µs [32mwriteBatch[0m=9.643375ms
+[32mINFO[0m[03-19|14:50:17] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=54 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=111.97486ms
+[32mINFO[0m[03-19|14:50:17] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=98ns
+[32mINFO[0m[03-19|14:50:17] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:17] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=356.9µs
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=55 [32mExecTx[0m=39.317355ms
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=55 [32mWaitDupCheck[0m=699ns
+[32mINFO[0m[03-19|14:50:18] ExecBlock                                [32mmodule[0m=util [32mheight[0m=55 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=58.47615ms
+[32mINFO[0m[03-19|14:50:18] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=27.369236ms [32msaveBlk[0m=3.346207ms [32mcacheBlk[0m=24.198µs [32mwriteBatch[0m=10.636946ms
+[32mINFO[0m[03-19|14:50:18] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=55 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=100.755938ms
+[32mINFO[0m[03-19|14:50:18] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=91ns
+[32mINFO[0m[03-19|14:50:18] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=379.986µs
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=56 [32mExecTx[0m=39.081974ms
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=56 [32mWaitDupCheck[0m=379ns
+[32mINFO[0m[03-19|14:50:18] ExecBlock                                [32mmodule[0m=util [32mheight[0m=56 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.296458ms
+[32mINFO[0m[03-19|14:50:18] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.741343ms [32msaveBlk[0m=3.562226ms [32mcacheBlk[0m=46.709µs [32mwriteBatch[0m=15.677866ms
+[32mINFO[0m[03-19|14:50:18] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=56 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=108.170257ms
+[32mINFO[0m[03-19|14:50:18] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:18] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=342.945µs
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=57 [32mExecTx[0m=38.550813ms
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=57 [32mWaitDupCheck[0m=471ns
+[32mINFO[0m[03-19|14:50:18] ExecBlock                                [32mmodule[0m=util [32mheight[0m=57 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=60.412379ms
+[32mINFO[0m[03-19|14:50:18] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.279267ms [32msaveBlk[0m=2.383978ms [32mcacheBlk[0m=5.46µs [32mwriteBatch[0m=10.784423ms
+[32mINFO[0m[03-19|14:50:18] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=57 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=99.785642ms
+[32mINFO[0m[03-19|14:50:18] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=150ns
+[32mINFO[0m[03-19|14:50:18] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=349.129µs
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=58 [32mExecTx[0m=37.713748ms
+[32mINFO[0m[03-19|14:50:18] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=58 [32mWaitDupCheck[0m=597ns
+[32mINFO[0m[03-19|14:50:18] ExecBlock                                [32mmodule[0m=util [32mheight[0m=58 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=66.681675ms
+[32mINFO[0m[03-19|14:50:18] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.558077ms [32msaveBlk[0m=1.978668ms [32mcacheBlk[0m=19.682µs [32mwriteBatch[0m=13.406826ms
+[32mINFO[0m[03-19|14:50:18] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=58 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.450054ms
+[32mINFO[0m[03-19|14:50:18] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=87ns
+[32mINFO[0m[03-19|14:50:18] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:18] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=812.974µs
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=59 [32mExecTx[0m=50.232666ms
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=59 [32mWaitDupCheck[0m=643ns
+[32mINFO[0m[03-19|14:50:19] ExecBlock                                [32mmodule[0m=util [32mheight[0m=59 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.368156ms
+[32mINFO[0m[03-19|14:50:19] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.642124ms [32msaveBlk[0m=2.142119ms [32mcacheBlk[0m=10.189µs [32mwriteBatch[0m=13.746753ms
+[32mINFO[0m[03-19|14:50:19] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=59 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=114.98961ms
+[32mINFO[0m[03-19|14:50:19] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=100ns
+[32mINFO[0m[03-19|14:50:19] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=414.051µs
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=60 [32mExecTx[0m=44.73252ms
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=60 [32mWaitDupCheck[0m=874ns
+[32mINFO[0m[03-19|14:50:19] ExecBlock                                [32mmodule[0m=util [32mheight[0m=60 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=73.218457ms
+[32mINFO[0m[03-19|14:50:19] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.793887ms [32msaveBlk[0m=2.186045ms [32mcacheBlk[0m=13.317µs [32mwriteBatch[0m=16.055138ms
+[32mINFO[0m[03-19|14:50:19] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=60 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=114.243694ms
+[32mINFO[0m[03-19|14:50:19] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=76ns
+[32mINFO[0m[03-19|14:50:19] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=430.256µs
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=61 [32mExecTx[0m=45.283826ms
+[32mINFO[0m[03-19|14:50:19] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=61 [32mWaitDupCheck[0m=729ns
+[32mINFO[0m[03-19|14:50:19] ExecBlock                                [32mmodule[0m=util [32mheight[0m=61 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=69.552901ms
+[32mINFO[0m[03-19|14:50:19] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.842955ms [32msaveBlk[0m=9.432497ms [32mcacheBlk[0m=13.084µs [32mwriteBatch[0m=11.764358ms
+[32mINFO[0m[03-19|14:50:19] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=61 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=116.655957ms
+[32mINFO[0m[03-19|14:50:19] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:19] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:19] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=405.174µs
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=62 [32mExecTx[0m=47.63853ms
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=62 [32mWaitDupCheck[0m=643ns
+[32mINFO[0m[03-19|14:50:20] ExecBlock                                [32mmodule[0m=util [32mheight[0m=62 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=73.536992ms
+[32mINFO[0m[03-19|14:50:20] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.677556ms [32msaveBlk[0m=3.800701ms [32mcacheBlk[0m=32.885µs [32mwriteBatch[0m=12.221265ms
+[32mINFO[0m[03-19|14:50:20] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=62 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=114.199938ms
+[32mINFO[0m[03-19|14:50:20] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=80ns
+[32mINFO[0m[03-19|14:50:20] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=472.091µs
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=63 [32mExecTx[0m=44.069708ms
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=63 [32mWaitDupCheck[0m=532ns
+[32mINFO[0m[03-19|14:50:20] ExecBlock                                [32mmodule[0m=util [32mheight[0m=63 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.878457ms
+[32mINFO[0m[03-19|14:50:20] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.217191ms [32msaveBlk[0m=2.249387ms [32mcacheBlk[0m=33.825µs [32mwriteBatch[0m=15.590471ms
+[32mINFO[0m[03-19|14:50:20] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=63 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.072514ms
+[32mINFO[0m[03-19|14:50:20] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=94ns
+[32mINFO[0m[03-19|14:50:20] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=318.473µs
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=64 [32mExecTx[0m=33.533845ms
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=64 [32mWaitDupCheck[0m=426ns
+[32mINFO[0m[03-19|14:50:20] ExecBlock                                [32mmodule[0m=util [32mheight[0m=64 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=68.64477ms
+[32mINFO[0m[03-19|14:50:20] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=35.171584ms [32msaveBlk[0m=1.834147ms [32mcacheBlk[0m=14.306µs [32mwriteBatch[0m=10.487626ms
+[32mINFO[0m[03-19|14:50:20] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=64 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=117.263024ms
+[32mINFO[0m[03-19|14:50:20] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=96ns
+[32mINFO[0m[03-19|14:50:20] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=405.773µs
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=65 [32mExecTx[0m=44.332909ms
+[32mINFO[0m[03-19|14:50:20] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=65 [32mWaitDupCheck[0m=530ns
+[32mINFO[0m[03-19|14:50:20] ExecBlock                                [32mmodule[0m=util [32mheight[0m=65 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.80391ms
+[32mINFO[0m[03-19|14:50:20] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.544215ms [32msaveBlk[0m=3.162975ms [32mcacheBlk[0m=40.034µs [32mwriteBatch[0m=16.167773ms
+[32mINFO[0m[03-19|14:50:20] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=65 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=116.699527ms
+[32mINFO[0m[03-19|14:50:20] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=85ns
+[32mINFO[0m[03-19|14:50:20] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:20] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=455.561µs
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=66 [32mExecTx[0m=42.051288ms
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=66 [32mWaitDupCheck[0m=797ns
+[32mINFO[0m[03-19|14:50:21] ExecBlock                                [32mmodule[0m=util [32mheight[0m=66 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.101136ms
+[32mINFO[0m[03-19|14:50:21] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.253232ms [32msaveBlk[0m=1.917933ms [32mcacheBlk[0m=16.277µs [32mwriteBatch[0m=10.916912ms
+[32mINFO[0m[03-19|14:50:21] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=66 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.149955ms
+[32mINFO[0m[03-19|14:50:21] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=81ns
+[32mINFO[0m[03-19|14:50:21] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=465.623µs
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=67 [32mExecTx[0m=42.708937ms
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=67 [32mWaitDupCheck[0m=603ns
+[32mINFO[0m[03-19|14:50:21] ExecBlock                                [32mmodule[0m=util [32mheight[0m=67 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=69.399212ms
+[32mINFO[0m[03-19|14:50:21] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.472932ms [32msaveBlk[0m=2.321929ms [32mcacheBlk[0m=15.416µs [32mwriteBatch[0m=18.302937ms
+[32mINFO[0m[03-19|14:50:21] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=67 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=114.47153ms
+[32mINFO[0m[03-19|14:50:21] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=98ns
+[32mINFO[0m[03-19|14:50:21] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=386.873µs
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=68 [32mExecTx[0m=47.865112ms
+[32mINFO[0m[03-19|14:50:21] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=68 [32mWaitDupCheck[0m=331ns
+[32mINFO[0m[03-19|14:50:21] ExecBlock                                [32mmodule[0m=util [32mheight[0m=68 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=67.895625ms
+[32mINFO[0m[03-19|14:50:21] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=28.005118ms [32msaveBlk[0m=1.938489ms [32mcacheBlk[0m=20.005µs [32mwriteBatch[0m=12.149281ms
+[32mINFO[0m[03-19|14:50:21] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=68 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=116.24816ms
+[32mINFO[0m[03-19|14:50:21] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=100ns
+[32mINFO[0m[03-19|14:50:21] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:21] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=384.102µs
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=69 [32mExecTx[0m=40.449696ms
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=69 [32mWaitDupCheck[0m=1.195µs
+[32mINFO[0m[03-19|14:50:22] ExecBlock                                [32mmodule[0m=util [32mheight[0m=69 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.174049ms
+[32mINFO[0m[03-19|14:50:22] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.386899ms [32msaveBlk[0m=2.032281ms [32mcacheBlk[0m=22.238µs [32mwriteBatch[0m=5.698381ms
+[32mINFO[0m[03-19|14:50:22] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=69 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=99.371199ms
+[32mINFO[0m[03-19|14:50:22] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=85ns
+[32mINFO[0m[03-19|14:50:22] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=409.054µs
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=70 [32mExecTx[0m=41.476489ms
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=70 [32mWaitDupCheck[0m=691ns
+[32mINFO[0m[03-19|14:50:22] ExecBlock                                [32mmodule[0m=util [32mheight[0m=70 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.87969ms
+[32mINFO[0m[03-19|14:50:22] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.581193ms [32msaveBlk[0m=1.842254ms [32mcacheBlk[0m=5.706µs [32mwriteBatch[0m=11.159696ms
+[32mINFO[0m[03-19|14:50:22] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=70 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=105.748883ms
+[32mINFO[0m[03-19|14:50:22] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:22] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=420.599µs
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=71 [32mExecTx[0m=45.088472ms
+[32mINFO[0m[03-19|14:50:22] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=71 [32mWaitDupCheck[0m=1.59µs
+[32mINFO[0m[03-19|14:50:22] ExecBlock                                [32mmodule[0m=util [32mheight[0m=71 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=81.530497ms
+[32mINFO[0m[03-19|14:50:22] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=34.18289ms [32msaveBlk[0m=2.034027ms [32mcacheBlk[0m=5.824µs [32mwriteBatch[0m=8.544509ms
+[32mINFO[0m[03-19|14:50:22] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=71 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=127.555232ms
+[32mINFO[0m[03-19|14:50:22] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=83ns
+[32mINFO[0m[03-19|14:50:22] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:22] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=374.738µs
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=72 [32mExecTx[0m=41.485005ms
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=72 [32mWaitDupCheck[0m=601ns
+[32mINFO[0m[03-19|14:50:23] ExecBlock                                [32mmodule[0m=util [32mheight[0m=72 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.317825ms
+[32mINFO[0m[03-19|14:50:23] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.984763ms [32msaveBlk[0m=2.209575ms [32mcacheBlk[0m=32.888µs [32mwriteBatch[0m=14.190099ms
+[32mINFO[0m[03-19|14:50:23] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=72 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.595658ms
+[32mINFO[0m[03-19|14:50:23] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=108ns
+[32mINFO[0m[03-19|14:50:23] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=396.315µs
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=73 [32mExecTx[0m=42.012467ms
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=73 [32mWaitDupCheck[0m=706ns
+[32mINFO[0m[03-19|14:50:23] ExecBlock                                [32mmodule[0m=util [32mheight[0m=73 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.516324ms
+[32mINFO[0m[03-19|14:50:23] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.322738ms [32msaveBlk[0m=2.376727ms [32mcacheBlk[0m=35.482µs [32mwriteBatch[0m=15.932772ms
+[32mINFO[0m[03-19|14:50:23] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=73 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=117.090157ms
+[32mINFO[0m[03-19|14:50:23] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:23] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=410.906µs
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=74 [32mExecTx[0m=42.516615ms
+[32mINFO[0m[03-19|14:50:23] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=74 [32mWaitDupCheck[0m=554ns
+[32mINFO[0m[03-19|14:50:23] ExecBlock                                [32mmodule[0m=util [32mheight[0m=74 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.050858ms
+[32mINFO[0m[03-19|14:50:23] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.891379ms [32msaveBlk[0m=3.039176ms [32mcacheBlk[0m=19.236µs [32mwriteBatch[0m=12.874439ms
+[32mINFO[0m[03-19|14:50:23] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=74 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=103.791086ms
+[32mINFO[0m[03-19|14:50:23] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=105ns
+[32mINFO[0m[03-19|14:50:23] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:23] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=419.93µs
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=75 [32mExecTx[0m=44.881977ms
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=75 [32mWaitDupCheck[0m=388ns
+[32mINFO[0m[03-19|14:50:24] ExecBlock                                [32mmodule[0m=util [32mheight[0m=75 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.640946ms
+[32mINFO[0m[03-19|14:50:24] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.664423ms [32msaveBlk[0m=5.740037ms [32mcacheBlk[0m=32.698µs [32mwriteBatch[0m=9.501605ms
+[32mINFO[0m[03-19|14:50:24] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=75 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=113.847651ms
+[32mINFO[0m[03-19|14:50:24] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=222ns
+[32mINFO[0m[03-19|14:50:24] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=499.934µs
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=76 [32mExecTx[0m=53.557827ms
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=76 [32mWaitDupCheck[0m=520ns
+[32mINFO[0m[03-19|14:50:24] ExecBlock                                [32mmodule[0m=util [32mheight[0m=76 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=79.525458ms
+[32mINFO[0m[03-19|14:50:24] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.809084ms [32msaveBlk[0m=3.034843ms [32mcacheBlk[0m=6.816µs [32mwriteBatch[0m=11.122369ms
+[32mINFO[0m[03-19|14:50:24] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=76 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=118.488935ms
+[32mINFO[0m[03-19|14:50:24] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=93ns
+[32mINFO[0m[03-19|14:50:24] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=368.528µs
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=77 [32mExecTx[0m=42.458617ms
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=77 [32mWaitDupCheck[0m=804ns
+[32mINFO[0m[03-19|14:50:24] ExecBlock                                [32mmodule[0m=util [32mheight[0m=77 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.010358ms
+[32mINFO[0m[03-19|14:50:24] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.011275ms [32msaveBlk[0m=2.204258ms [32mcacheBlk[0m=13.797µs [32mwriteBatch[0m=16.189143ms
+[32mINFO[0m[03-19|14:50:24] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=77 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.572889ms
+[32mINFO[0m[03-19|14:50:24] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=97ns
+[32mINFO[0m[03-19|14:50:24] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:24] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=386.563µs
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=78 [32mExecTx[0m=39.551588ms
+[32mINFO[0m[03-19|14:50:24] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=78 [32mWaitDupCheck[0m=487ns
+[32mINFO[0m[03-19|14:50:25] ExecBlock                                [32mmodule[0m=util [32mheight[0m=78 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=81.858507ms
+[32mINFO[0m[03-19|14:50:25] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.671983ms [32msaveBlk[0m=1.920513ms [32mcacheBlk[0m=15.581µs [32mwriteBatch[0m=10.82829ms
+[32mINFO[0m[03-19|14:50:25] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=78 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=121.171601ms
+[32mINFO[0m[03-19|14:50:25] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=99ns
+[32mINFO[0m[03-19|14:50:25] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=409.234µs
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=79 [32mExecTx[0m=42.758084ms
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=79 [32mWaitDupCheck[0m=543ns
+[32mINFO[0m[03-19|14:50:25] ExecBlock                                [32mmodule[0m=util [32mheight[0m=79 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=71.557656ms
+[32mINFO[0m[03-19|14:50:25] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.533104ms [32msaveBlk[0m=5.613218ms [32mcacheBlk[0m=15.849µs [32mwriteBatch[0m=19.697125ms
+[32mINFO[0m[03-19|14:50:25] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=79 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=123.260037ms
+[32mINFO[0m[03-19|14:50:25] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:25] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=385.372µs
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=80 [32mExecTx[0m=41.356319ms
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=80 [32mWaitDupCheck[0m=501ns
+[32mINFO[0m[03-19|14:50:25] ExecBlock                                [32mmodule[0m=util [32mheight[0m=80 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=62.695969ms
+[32mINFO[0m[03-19|14:50:25] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.158876ms [32msaveBlk[0m=2.207652ms [32mcacheBlk[0m=14.825µs [32mwriteBatch[0m=17.020786ms
+[32mINFO[0m[03-19|14:50:25] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=80 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=107.047026ms
+[32mINFO[0m[03-19|14:50:25] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=202ns
+[32mINFO[0m[03-19|14:50:25] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:25] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=357.88µs
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=81 [32mExecTx[0m=38.158787ms
+[32mINFO[0m[03-19|14:50:25] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=81 [32mWaitDupCheck[0m=472ns
+[32mINFO[0m[03-19|14:50:26] ExecBlock                                [32mmodule[0m=util [32mheight[0m=81 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=62.95753ms
+[32mINFO[0m[03-19|14:50:26] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=22.279647ms [32msaveBlk[0m=4.269145ms [32mcacheBlk[0m=12.307µs [32mwriteBatch[0m=16.871824ms
+[32mINFO[0m[03-19|14:50:26] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=81 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=107.389809ms
+[32mINFO[0m[03-19|14:50:26] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=119ns
+[32mINFO[0m[03-19|14:50:26] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=384.659µs
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=82 [32mExecTx[0m=43.449609ms
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=82 [32mWaitDupCheck[0m=470ns
+[32mINFO[0m[03-19|14:50:26] ExecBlock                                [32mmodule[0m=util [32mheight[0m=82 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=63.398924ms
+[32mINFO[0m[03-19|14:50:26] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.185578ms [32msaveBlk[0m=1.947897ms [32mcacheBlk[0m=4.972µs [32mwriteBatch[0m=11.477182ms
+[32mINFO[0m[03-19|14:50:26] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=82 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=101.955508ms
+[32mINFO[0m[03-19|14:50:26] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:26] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=467.11µs
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=83 [32mExecTx[0m=43.622125ms
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=83 [32mWaitDupCheck[0m=468ns
+[32mINFO[0m[03-19|14:50:26] ExecBlock                                [32mmodule[0m=util [32mheight[0m=83 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=69.410825ms
+[32mINFO[0m[03-19|14:50:26] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.10322ms [32msaveBlk[0m=11.160347ms [32mcacheBlk[0m=47.696µs [32mwriteBatch[0m=24.668917ms
+[32mINFO[0m[03-19|14:50:26] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=83 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=129.379339ms
+[32mINFO[0m[03-19|14:50:26] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=117ns
+[32mINFO[0m[03-19|14:50:26] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:26] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=424.19µs
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=84 [32mExecTx[0m=46.572139ms
+[32mINFO[0m[03-19|14:50:26] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=84 [32mWaitDupCheck[0m=647ns
+[32mINFO[0m[03-19|14:50:27] ExecBlock                                [32mmodule[0m=util [32mheight[0m=84 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=71.40426ms
+[32mINFO[0m[03-19|14:50:27] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.809864ms [32msaveBlk[0m=5.895015ms [32mcacheBlk[0m=37.876µs [32mwriteBatch[0m=12.220827ms
+[32mINFO[0m[03-19|14:50:27] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=84 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=115.421137ms
+[32mINFO[0m[03-19|14:50:27] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=109ns
+[32mINFO[0m[03-19|14:50:27] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=419.13µs
+[32mINFO[0m[03-19|14:50:27] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=85 [32mExecTx[0m=43.649266ms
+[32mINFO[0m[03-19|14:50:27] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=85 [32mWaitDupCheck[0m=409ns
+[32mINFO[0m[03-19|14:50:27] ExecBlock                                [32mmodule[0m=util [32mheight[0m=85 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=64.124703ms
+[32mINFO[0m[03-19|14:50:27] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.136903ms [32msaveBlk[0m=2.130382ms [32mcacheBlk[0m=18.289µs [32mwriteBatch[0m=11.828794ms
+[32mINFO[0m[03-19|14:50:27] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=85 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=104.140568ms
+[32mINFO[0m[03-19|14:50:27] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=91ns
+[32mINFO[0m[03-19|14:50:27] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=375.849µs
+[32mINFO[0m[03-19|14:50:27] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=86 [32mExecTx[0m=45.58698ms
+[32mINFO[0m[03-19|14:50:27] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=86 [32mWaitDupCheck[0m=707ns
+[32mINFO[0m[03-19|14:50:27] ExecBlock                                [32mmodule[0m=util [32mheight[0m=86 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=68.658828ms
+[32mINFO[0m[03-19|14:50:27] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.334449ms [32msaveBlk[0m=2.136638ms [32mcacheBlk[0m=35.605µs [32mwriteBatch[0m=11.600757ms
+[32mINFO[0m[03-19|14:50:27] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=86 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=104.744588ms
+[32mINFO[0m[03-19|14:50:27] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=92ns
+[32mINFO[0m[03-19|14:50:27] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:27] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=387.268µs
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=87 [32mExecTx[0m=41.600306ms
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=87 [32mWaitDupCheck[0m=943ns
+[32mINFO[0m[03-19|14:50:28] ExecBlock                                [32mmodule[0m=util [32mheight[0m=87 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=61.004639ms
+[32mINFO[0m[03-19|14:50:28] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.953556ms [32msaveBlk[0m=2.344928ms [32mcacheBlk[0m=14.559µs [32mwriteBatch[0m=11.563281ms
+[32mINFO[0m[03-19|14:50:28] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=87 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=100.106149ms
+[32mINFO[0m[03-19|14:50:28] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=124ns
+[32mINFO[0m[03-19|14:50:28] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=402.283µs
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=88 [32mExecTx[0m=44.088913ms
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=88 [32mWaitDupCheck[0m=641ns
+[32mINFO[0m[03-19|14:50:28] ExecBlock                                [32mmodule[0m=util [32mheight[0m=88 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=66.709084ms
+[32mINFO[0m[03-19|14:50:28] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=25.850678ms [32msaveBlk[0m=2.892391ms [32mcacheBlk[0m=5.024µs [32mwriteBatch[0m=11.035946ms
+[32mINFO[0m[03-19|14:50:28] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=88 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=107.471358ms
+[32mINFO[0m[03-19|14:50:28] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=180ns
+[32mINFO[0m[03-19|14:50:28] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=378.54µs
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=89 [32mExecTx[0m=41.845924ms
+[32mINFO[0m[03-19|14:50:28] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=89 [32mWaitDupCheck[0m=890ns
+[32mINFO[0m[03-19|14:50:28] ExecBlock                                [32mmodule[0m=util [32mheight[0m=89 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=73.433725ms
+[32mINFO[0m[03-19|14:50:28] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.41262ms [32msaveBlk[0m=2.267834ms [32mcacheBlk[0m=49.664µs [32mwriteBatch[0m=15.965463ms
+[32mINFO[0m[03-19|14:50:28] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=89 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=116.078811ms
+[32mINFO[0m[03-19|14:50:28] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=130ns
+[32mINFO[0m[03-19|14:50:28] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:28] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=453.77µs
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=90 [32mExecTx[0m=48.878211ms
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=90 [32mWaitDupCheck[0m=680ns
+[32mINFO[0m[03-19|14:50:29] ExecBlock                                [32mmodule[0m=util [32mheight[0m=90 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=77.623273ms
+[32mINFO[0m[03-19|14:50:29] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.817995ms [32msaveBlk[0m=1.851105ms [32mcacheBlk[0m=18.077µs [32mwriteBatch[0m=10.45468ms
+[32mINFO[0m[03-19|14:50:29] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=90 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=117.795846ms
+[32mINFO[0m[03-19|14:50:29] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=87ns
+[32mINFO[0m[03-19|14:50:29] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=404.303µs
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=91 [32mExecTx[0m=43.929866ms
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=91 [32mWaitDupCheck[0m=340ns
+[32mINFO[0m[03-19|14:50:29] ExecBlock                                [32mmodule[0m=util [32mheight[0m=91 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.225057ms
+[32mINFO[0m[03-19|14:50:29] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=26.537542ms [32msaveBlk[0m=1.834281ms [32mcacheBlk[0m=17.459µs [32mwriteBatch[0m=11.637415ms
+[32mINFO[0m[03-19|14:50:29] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=91 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=106.207227ms
+[32mINFO[0m[03-19|14:50:29] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=107ns
+[32mINFO[0m[03-19|14:50:29] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=401.894µs
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=92 [32mExecTx[0m=43.432564ms
+[32mINFO[0m[03-19|14:50:29] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=92 [32mWaitDupCheck[0m=579ns
+[32mINFO[0m[03-19|14:50:29] ExecBlock                                [32mmodule[0m=util [32mheight[0m=92 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=70.140006ms
+[32mINFO[0m[03-19|14:50:29] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=21.41648ms [32msaveBlk[0m=3.763939ms [32mcacheBlk[0m=12.168µs [32mwriteBatch[0m=15.891728ms
+[32mINFO[0m[03-19|14:50:29] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=92 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.188007ms
+[32mINFO[0m[03-19|14:50:29] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=95ns
+[32mINFO[0m[03-19|14:50:29] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:29] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=367.709µs
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=93 [32mExecTx[0m=43.203296ms
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=93 [32mWaitDupCheck[0m=743ns
+[32mINFO[0m[03-19|14:50:30] ExecBlock                                [32mmodule[0m=util [32mheight[0m=93 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=65.182913ms
+[32mINFO[0m[03-19|14:50:30] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.442706ms [32msaveBlk[0m=1.774292ms [32mcacheBlk[0m=17.769µs [32mwriteBatch[0m=18.62563ms
+[32mINFO[0m[03-19|14:50:30] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=93 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=110.095848ms
+[32mINFO[0m[03-19|14:50:30] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=121ns
+[32mINFO[0m[03-19|14:50:30] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=472.959µs
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=94 [32mExecTx[0m=48.262627ms
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=94 [32mWaitDupCheck[0m=729ns
+[32mINFO[0m[03-19|14:50:30] ExecBlock                                [32mmodule[0m=util [32mheight[0m=94 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=72.005299ms
+[32mINFO[0m[03-19|14:50:30] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.027167ms [32msaveBlk[0m=1.864815ms [32mcacheBlk[0m=16.599µs [32mwriteBatch[0m=11.102357ms
+[32mINFO[0m[03-19|14:50:30] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=94 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=111.053051ms
+[32mINFO[0m[03-19|14:50:30] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=99ns
+[32mINFO[0m[03-19|14:50:30] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=375.858µs
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=95 [32mExecTx[0m=43.078285ms
+[32mINFO[0m[03-19|14:50:30] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=95 [32mWaitDupCheck[0m=616ns
+[32mINFO[0m[03-19|14:50:30] ExecBlock                                [32mmodule[0m=util [32mheight[0m=95 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=69.666119ms
+[32mINFO[0m[03-19|14:50:30] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.419918ms [32msaveBlk[0m=2.1663ms [32mcacheBlk[0m=37.486µs [32mwriteBatch[0m=17.100605ms
+[32mINFO[0m[03-19|14:50:30] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=95 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=113.92913ms
+[32mINFO[0m[03-19|14:50:30] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=91ns
+[32mINFO[0m[03-19|14:50:30] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:30] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=340.312µs
+[32mINFO[0m[03-19|14:50:31] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=96 [32mExecTx[0m=42.322988ms
+[32mINFO[0m[03-19|14:50:31] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=96 [32mWaitDupCheck[0m=890ns
+[32mINFO[0m[03-19|14:50:31] ExecBlock                                [32mmodule[0m=util [32mheight[0m=96 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=66.915462ms
+[32mINFO[0m[03-19|14:50:31] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=29.102534ms [32msaveBlk[0m=2.63092ms [32mcacheBlk[0m=16.029µs [32mwriteBatch[0m=15.955024ms
+[32mINFO[0m[03-19|14:50:31] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=96 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=115.840456ms
+[32mINFO[0m[03-19|14:50:31] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=95ns
+[32mINFO[0m[03-19|14:50:31] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=502.781µs
+[32mINFO[0m[03-19|14:50:31] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=97 [32mExecTx[0m=45.941513ms
+[32mINFO[0m[03-19|14:50:31] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=97 [32mWaitDupCheck[0m=754ns
+[32mINFO[0m[03-19|14:50:31] ExecBlock                                [32mmodule[0m=util [32mheight[0m=97 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=88.128125ms
+[32mINFO[0m[03-19|14:50:31] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=35.489678ms [32msaveBlk[0m=2.325406ms [32mcacheBlk[0m=15.504µs [32mwriteBatch[0m=14.907971ms
+[32mINFO[0m[03-19|14:50:31] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=97 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=145.11608ms
+[32mINFO[0m[03-19|14:50:31] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=74ns
+[32mINFO[0m[03-19|14:50:31] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:31] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=501.308µs
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=98 [32mExecTx[0m=52.500748ms
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=98 [32mWaitDupCheck[0m=935ns
+[32mINFO[0m[03-19|14:50:32] ExecBlock                                [32mmodule[0m=util [32mheight[0m=98 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=80.392974ms
+[32mINFO[0m[03-19|14:50:32] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=23.068083ms [32msaveBlk[0m=2.188406ms [32mcacheBlk[0m=23.035µs [32mwriteBatch[0m=16.751614ms
+[32mINFO[0m[03-19|14:50:32] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=98 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=123.530457ms
+[32mINFO[0m[03-19|14:50:32] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=123ns
+[32mINFO[0m[03-19|14:50:32] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=378.717µs
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=99 [32mExecTx[0m=49.711179ms
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=99 [32mWaitDupCheck[0m=551ns
+[32mINFO[0m[03-19|14:50:32] ExecBlock                                [32mmodule[0m=util [32mheight[0m=99 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=71.455457ms
+[32mINFO[0m[03-19|14:50:32] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=24.354128ms [32msaveBlk[0m=3.165914ms [32mcacheBlk[0m=8.378µs [32mwriteBatch[0m=11.508605ms
+[32mINFO[0m[03-19|14:50:32] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=99 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=112.054662ms
+[32mINFO[0m[03-19|14:50:32] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=75ns
+[32mINFO[0m[03-19|14:50:32] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] =============start get tx=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] ==================start create new block!===================== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] Client-request done                      [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] pre-prepare done                         [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] prepare done                             [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] commit done                              [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] ===============Get block from reply channel=========== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] Get DAG                                  [32mmodule[0m=execs [32mruntime[0m=411.582µs
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=100 [32mExecTx[0m=43.705318ms
+[32mINFO[0m[03-19|14:50:32] PreExecBlock                             [32mmodule[0m=util [32mheight[0m=100 [32mWaitDupCheck[0m=470ns
+[32mINFO[0m[03-19|14:50:32] ExecBlock                                [32mmodule[0m=util [32mheight[0m=100 [32mntx[0m=1000 [32mwritebatchsync[0m=true [32mcost[0m=74.00313ms
+[32mINFO[0m[03-19|14:50:32] ConnectBlock                             [32mmodule[0m=blockchain [32mexecLocal[0m=45.501306ms [32msaveBlk[0m=1.942397ms [32mcacheBlk[0m=7.321µs [32mwriteBatch[0m=11.502766ms
+[32mINFO[0m[03-19|14:50:32] ProcAddBlockMsg                          [32mmodule[0m=blockchain [32mheight[0m=100 [32mtxCount[0m=1000 [32mrecvFrom[0m=self [32mcost[0m=133.978521ms
+[32mINFO[0m[03-19|14:50:32] WriteBlock                               [32mmodule[0m=consensus [32mdiffTx[0m=91ns
+[32mINFO[0m[03-19|14:50:32] ===============readreply and writeblock done=============== [32mmodule[0m=Pbft
+[32mINFO[0m[03-19|14:50:32] =============start get tx=============== [32mmodule[0m=Pbft
+test data clear successfully!
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=wallet
+[32mINFO[0m[03-19|14:50:37] wallet module closed                     [32mmodule[0m=wallet
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=p2p
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=crypto
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=execs
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=consensus
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=blockchain
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=store
+[32mINFO[0m[03-19|14:50:37] queue module closed                      [32mmodule[0m=queue
+[32mINFO[0m[03-19|14:50:37] unsub2                                   [32mmodule[0m=queue [32mtopic[0m=mempool
+[32mINFO[0m[03-19|14:50:37] closing chain33 callback                 [32mmodule[0m=queue
+[32mINFO[0m[03-19|14:50:37] consensus base closed 
+[32mINFO[0m[03-19|14:50:37] store mavl closed                        [32mmodule[0m=mavl
+[32mINFO[0m[03-19|14:50:37] exec module closed                       [32mmodule[0m=execs
+[32mINFO[0m[03-19|14:50:37] p2p closing                              [32mmodule[0m=dht
+[32mINFO[0m[03-19|14:50:37] managePeers                              [32mmodule[0m=dht [32mp2p[0m=closed
+[32mINFO[0m[03-19|14:50:37] genAirDropKey                            [32mmodule[0m=dht [32mp2p closed[0m=nil [32mLOG15_ERROR[0m="Normalized odd number of arguments by adding nil"
+[31mEROR[0m[03-19|14:50:37] SubMsg                                   [31mmodule[0m=pubsub [31mtopic[0m=block/v1.0.0 [31msub err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] RemoveTopic                              [32mmodule[0m=pubsub [32mtopic[0m=block/v1.0.0
+[31mEROR[0m[03-19|14:50:37] RemoveTopic                              [31mmodule[0m=pubsub [31mtopic[0m=block/v1.0.0 [31mclose topic err[0m="context canceled"
+[31mEROR[0m[03-19|14:50:37] SubMsg                                   [31mmodule[0m=pubsub [31mtopic[0m=peermsg/16Uiu2HAmKhEg53d41Hncm6oeksy8U5wjxrqSUYWvJKSvRRpCXnkF [31msub err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] RemoveTopic                              [32mmodule[0m=pubsub [32mtopic[0m=peermsg/16Uiu2HAmKhEg53d41Hncm6oeksy8U5wjxrqSUYWvJKSvRRpCXnkF
+[31mEROR[0m[03-19|14:50:37] RemoveTopic                              [31mmodule[0m=pubsub [31mtopic[0m=peermsg/16Uiu2HAmKhEg53d41Hncm6oeksy8U5wjxrqSUYWvJKSvRRpCXnkF [31mclose topic err[0m="context canceled"
+[31mEROR[0m[03-19|14:50:37] SubMsg                                   [31mmodule[0m=pubsub [31mtopic[0m=tx/v1.0.0 [31msub err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] RemoveTopic                              [32mmodule[0m=pubsub [32mtopic[0m=tx/v1.0.0
+[31mEROR[0m[03-19|14:50:37] RemoveTopic                              [31mmodule[0m=pubsub [31mtopic[0m=tx/v1.0.0 [31mclose topic err[0m="context canceled"
+[31mEROR[0m[03-19|14:50:37] SubMsg                                   [31mmodule[0m=pubsub [31mtopic[0m=batchtx/v1.0 [31msub err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] RemoveTopic                              [32mmodule[0m=pubsub [32mtopic[0m=batchtx/v1.0
+[31mEROR[0m[03-19|14:50:37] RemoveTopic                              [31mmodule[0m=pubsub [31mtopic[0m=batchtx/v1.0 [31mclose topic err[0m="context canceled"
+[31mEROR[0m[03-19|14:50:37] SubMsg                                   [31mmodule[0m=pubsub [31mtopic[0m=ltblk/v1.0 [31msub err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] RemoveTopic                              [32mmodule[0m=pubsub [32mtopic[0m=ltblk/v1.0
+[31mEROR[0m[03-19|14:50:37] RemoveTopic                              [31mmodule[0m=pubsub [31mtopic[0m=ltblk/v1.0 [31mclose topic err[0m="context canceled"
+[32mINFO[0m[03-19|14:50:37] findLANPeers                             [32mmodule[0m=dht [32mprocess[0m=done
+[32mINFO[0m[03-19|14:50:37] p2p closed                               [32mmodule[0m=dht
+[32mINFO[0m[03-19|14:50:37] blockchain wait for recvwg quit          [32mmodule[0m=blockchain
+[31mEROR[0m[03-19|14:50:37] getLocalPeerInfo                         [31mmodule[0m=p2p.peer [31mmempool WaitTimeout[0m=ErrIsQueueClosed
+[32mINFO[0m[03-19|14:50:37] blockchain wait for tickerwg quit        [32mmodule[0m=blockchain
+[32mINFO[0m[03-19|14:50:37] blockchain wait for reducewg quit        [32mmodule[0m=blockchain
+[32mINFO[0m[03-19|14:50:37] blockchain module closed                 [32mmodule[0m=blockchain
+--- PASS: TestPbft (39.99s)
+PASS
+ok  	github.com/33cn/chain33/plugin/consensus/pbft	40.093s
