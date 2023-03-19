@@ -5,6 +5,7 @@ import (
 	"github.com/33cn/chain33/common/db"
 	"github.com/33cn/chain33/queue"
 	"github.com/33cn/chain33/types"
+	"sync"
 )
 
 //LocalDB 本地数据库，类似localdb，不加入区块链的状态。
@@ -225,12 +226,12 @@ func (l *LocalDB) PrefixCount(prefix []byte) (count int64) {
 }
 
 type cacheDB struct {
-	data map[string][]byte
+	data *sync.Map
 }
 
 func newcacheDB(size int) *cacheDB {
 	return &cacheDB{
-		data: make(map[string][]byte, size),
+		data: &sync.Map{},
 	}
 }
 
@@ -239,25 +240,24 @@ func (db *cacheDB) Get(key []byte) (value []byte, incache bool, err error) {
 	if db.data == nil {
 		return nil, false, types.ErrNotFound
 	}
-	v, ok := db.data[string(key)]
-	if ok && v != nil {
-		return v, true, nil
+	v, ok := db.data.Load(string(key))
+	if bs, okk := v.([]byte); okk && ok {
+		return bs, true, nil
 	}
 	return nil, ok, types.ErrNotFound
 }
 
 func (db *cacheDB) Set(key []byte, value []byte) {
-	db.data[string(key)] = value
+	db.data.Store(string(key), value)
 }
 
 func (db *cacheDB) Reset() {
-	for k := range db.data {
-		delete(db.data, k)
-	}
+	db.data = &sync.Map{}
 }
 
 func (db *cacheDB) Merge(db2 *cacheDB) {
-	for k, v := range db2.data {
-		db.data[k] = v
-	}
+	db2.data.Range(func(key, value any) bool {
+		db.data.Store(key, value)
+		return true
+	})
 }

@@ -58,16 +58,25 @@ func (basic *Basic) GetTxWritesAndReads(tx *types.Transaction) (reads []string, 
 	if err != nil {
 		return nil, nil, err
 	}
+	prefix := fmt.Sprintf("mavl-basic-%s-", basic.GetCurrentExecName())
 	if vty == bty.BasicActionRead {
 		val := v.Interface().(*bty.Read)
-		reads = val.Reads
+		for _, key := range val.Reads {
+			reads = append(reads, prefix+key)
+		}
 	} else if vty == bty.BasicActionUpdate {
 		val := v.Interface().(*bty.Update)
-		writes = val.Writes
+		for _, key := range val.Writes {
+			writes = append(writes, prefix+key)
+		}
 	} else if vty == bty.BasicActionReadModifyWrite {
 		val := v.Interface().(*bty.ReadModifyWrite)
-		reads = val.Reads
-		writes = val.Writes
+		for _, key := range val.Reads {
+			reads = append(reads, prefix+key)
+		}
+		for _, key := range val.Writes {
+			writes = append(writes, prefix+key)
+		}
 	}
 	return
 }
@@ -111,7 +120,7 @@ func (basic *Basic) IsFriend(myexec, writekey []byte, othertx *types.Transaction
 	if !basic.AllowIsSame(myexec) {
 		return false
 	}
-	if strings.HasPrefix(string(writekey), "mavl-basic-"+string(othertx.Execer)) {
+	if strings.HasPrefix(string(writekey), "mavl-basic-user.basic.test") {
 		return true
 	}
 	return false

@@ -8,19 +8,17 @@ package executor
 //store package store the world - state data
 import (
 	"fmt"
-	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
-	"runtime"
-	"strings"
-	"sync"
-	"time"
-
 	"github.com/33cn/chain33/client/api"
 	dbm "github.com/33cn/chain33/common/db"
 	clog "github.com/33cn/chain33/common/log"
 	log "github.com/33cn/chain33/common/log/log15"
+	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
 	"github.com/33cn/chain33/pluginmgr"
 	"github.com/33cn/chain33/rpc/grpcclient"
 	drivers "github.com/33cn/chain33/system/dapp"
+	"runtime"
+	"strings"
+	"sync"
 
 	// register drivers
 	"github.com/33cn/chain33/client"
@@ -360,7 +358,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	hasParallelTx := false
 	rwSetArr := make([]RWSet, len(datas.Txs))
 
-	bT := time.Now()
 	for i := 0; i < len(datas.Txs); i++ {
 		tx := datas.Txs[i]
 		//检查groupcount
@@ -442,7 +439,7 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	if hasParallelTx {
 		for i, _ := range receipts {
 			wg.Add(1)
-			func(j int) {
+			go func(j int) {
 				defer wg.Done()
 				if _, ok := parallelTxs.Load(j); ok {
 					if hasConflict(j, rwSetArr[j].Writes, writes) {
@@ -462,8 +459,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 		}
 		wg.Wait()
 	}
-	et := time.Since(bT)
-	elog.Info("Get RwSet", "runtime", et)
 	msg.Reply(exec.client.NewMessage("", types.EventReceipts,
 		&types.Receipts{Receipts: receipts}))
 }
