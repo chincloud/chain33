@@ -123,6 +123,7 @@ func initData(fileName string) {
 			index = 1
 		}
 	}
+	SetTxType(tx)
 	txs = append(txs, *tx)
 }
 
@@ -249,9 +250,9 @@ func createReplyList(cfg *types.Chain33Config, count int) {
 	for j := 0; j < txSize; j++ {
 		//tx := &types.Transaction{}
 		idx := count*txSize + j
-		tx := &types.Transaction{Execer: []byte(txs[j].To), Payload: types.Encode(CreateAction(idx)), Fee: 0}
+		tx := &types.Transaction{Execer: []byte(txs[idx].To), Payload: types.Encode(CreateAction(idx)), Fee: 0}
 		//tx.To = "1Q4NhureJxKNBf71d26B9J3fBQoQcfmez2"
-		tx.To = dapp.ExecAddress(txs[j].To)
+		tx.To = dapp.ExecAddress(txs[idx].To)
 		tx.Nonce = random.Int63()
 		tx.ChainID = cfg.GetChainID()
 
@@ -265,10 +266,10 @@ func createReplyList(cfg *types.Chain33Config, count int) {
 func CreateAction(idx int) *bty.BasicAction {
 	tx := txs[idx]
 	var action *bty.BasicAction
-	if tx.Type == 0 {
+	if tx.Type == 1 {
 		val := &bty.BasicAction_Read{Read: &bty.Read{Reads: tx.Reads}}
 		action = &bty.BasicAction{Value: val, Ty: bty.BasicActionRead}
-	} else if tx.Type == 1 {
+	} else if tx.Type == 2 {
 		val := &bty.BasicAction_Update{Update: &bty.Update{Writes: tx.Writes}}
 		action = &bty.BasicAction{Value: val, Ty: bty.BasicActionUpdate}
 	} else if tx.Type == 3 {
