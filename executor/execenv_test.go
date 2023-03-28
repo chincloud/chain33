@@ -5,6 +5,7 @@
 package executor
 
 import (
+	"sync"
 	"testing"
 	"time"
 
@@ -64,7 +65,7 @@ func TestLoadDriverFork(t *testing.T) {
 	execute := newExecutor(ctx, exec, nil, txs, nil)
 	for idx, c := range cases {
 		if execute.height != c.height {
-			execute.driverCache = make(map[string]drivers.Driver)
+			execute.driverCache = sync.Map{}
 			execute.height = c.height
 		}
 		driver := execute.loadDriver(c.tx, c.index)

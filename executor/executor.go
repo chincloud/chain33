@@ -19,6 +19,8 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+	"sync/atomic"
+	"time"
 
 	// register drivers
 	"github.com/33cn/chain33/client"
@@ -49,6 +51,7 @@ type Executor struct {
 	pluginEnable     map[string]bool
 	alias            map[string]string
 	noneDriverPool   *sync.Pool
+	scheduler        *scheduler
 }
 
 type RWSet struct {
@@ -101,6 +104,7 @@ func New(cfg *typ.Chain33Config) *Executor {
 		}
 		exec.alias[data[0]] = data[1]
 	}
+	exec.scheduler = newScheduler(exec, 4)
 
 	return exec
 }
@@ -132,6 +136,10 @@ func (exec *Executor) SetQueueClient(qcli queue.Client) {
 			elog.Debug("exec recv", "msg", msg)
 			if msg.Ty == types.EventExecTxList {
 				go exec.procExecTxList(msg)
+			} else if msg.Ty == types.EventInterBlockExecTxList {
+				go exec.scheduler.receiveMsg(msg)
+			} else if msg.Ty == types.EventAssistData {
+				go exec.scheduler.receiveAssistData(msg)
 			} else if msg.Ty == types.EventAddBlock {
 				go exec.procExecAddBlock(msg)
 			} else if msg.Ty == types.EventDelBlock {
@@ -306,7 +314,7 @@ func updateMinIndex(keys []string, set *sync.Map, stateLockMap *sync.Map, i int)
 			v, _ := stateLockMap.LoadOrStore(r, &sync.Mutex{})
 			if mu, ok := v.(*sync.Mutex); ok {
 				mu.Lock()
-				if idx, ok := set.Load(r); ok {
+				if idx, okk := set.Load(r); okk {
 					if j, o := idx.(int); o {
 						if i < j {
 							set.Store(r, i)
@@ -319,6 +327,199 @@ func updateMinIndex(keys []string, set *sync.Map, stateLockMap *sync.Map, i int)
 			}
 		}
 	}
+}
+
+func (exec *Executor) procExecTxListInterBlock(msg *queue.Message, sc *schedulerChan) {
+	//panic 处理
+	defer func() {
+		if r := recover(); r != nil {
+			elog.Error("exec tx list panic error", "err", r, "stack", GetStack())
+			//msg.Reply(exec.client.NewMessage("", types.EventReceipts, types.ErrExecPanic))
+			return
+		}
+	}()
+	datas := msg.GetData().(*types.ExecTxList)
+	ctx := &executorCtx{
+		stateHash:  datas.StateHash,
+		height:     datas.Height,
+		blocktime:  datas.BlockTime,
+		difficulty: datas.Difficulty,
+		mainHash:   datas.MainHash,
+		mainHeight: datas.MainHeight,
+		parentHash: datas.ParentHash,
+	}
+	var localdb dbm.KVDB
+
+	if !exec.disableLocal {
+		localdb = NewLocalDB(exec.client, exec.qclient, false)
+		defer localdb.(*LocalDB).Close()
+	}
+	execute := newExecutor(ctx, exec, localdb, datas.Txs, nil)
+	execute.enableMVCC(nil)
+	exec.scheduler.executeMap.Store(int(datas.Height), execute)
+	receipts := make([]*types.Receipt, len(datas.Txs))
+
+	initMu := sync.Mutex{}
+	needInitRecords := true
+
+	wg := sync.WaitGroup{}
+	syncMap := &sync.Map{}
+	reads := &sync.Map{}
+	writes := &sync.Map{}
+	hasParallelTx := false
+	rwSetArr := make([]RWSet, len(datas.Txs))
+	execFlags := make([]bool, len(datas.Txs))
+
+	isHead := false
+	for {
+		select {
+		case isHead = <-sc.headChan:
+			close(sc.txChan)
+			initMu.Lock()
+			if needInitRecords {
+				bt := time.Now()
+				for i := 0; i < len(datas.Txs); i++ {
+					tx := datas.Txs[i]
+					if strings.HasPrefix(string(tx.Execer), "user.basic.test") {
+						wg.Add(1)
+						go func(j int) {
+							defer wg.Done()
+							driver := execute.loadDriver(datas.Txs[j], j)
+							if driver.GetDriverName() == "basic" {
+								basic, ok := driver.(*basic.Basic)
+								if ok {
+									rs, ws, err := basic.GetTxWritesAndReads(datas.Txs[j])
+									if err == nil {
+										rwSetArr[j] = RWSet{
+											Reads:  rs,
+											Writes: ws,
+										}
+									}
+								}
+							}
+							updateMinIndex(rwSetArr[j].Reads, reads, syncMap, j)
+							updateMinIndex(rwSetArr[j].Writes, writes, syncMap, j)
+							hasParallelTx = true
+						}(i)
+						continue
+					}
+					receipt, err := execute.execTx(exec, tx, true, i)
+					if api.IsAPIEnvError(err) {
+						//msg.Reply(exec.client.NewMessage("", types.EventReceipts, err))
+						return
+					}
+					if err != nil {
+						receipts[i] = types.NewErrReceipt(err)
+						continue
+					}
+					//update local
+					receipts[i] = receipt
+				}
+				elog.Info("First Phase", "Execute Time", time.Since(bt), "Height", datas.Height)
+				wg.Wait()
+			}
+			if !hasParallelTx {
+				goto Done
+			}
+			needInitRecords = false
+			initMu.Unlock()
+			count := int32(0)
+			bt := time.Now()
+			for k, _ := range receipts {
+				wg.Add(1)
+				go func(j int) {
+					defer wg.Done()
+					if execFlags[j] {
+						atomic.AddInt32(&count, 1)
+						//elog.Info("Tx Has Executed", "height", datas.Height, "txIndex", j)
+						return
+					}
+					if hasConflict(j, rwSetArr[j].Writes, writes) {
+						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+						return
+					}
+					if hasConflict(j, rwSetArr[j].Writes, reads) && hasConflict(j, rwSetArr[j].Reads, writes) {
+						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+					} else {
+						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
+						go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
+						if err != nil {
+							receipts[j] = types.NewErrReceipt(err)
+						}
+						receipts[j] = receipt
+					}
+				}(k)
+			}
+			wg.Wait()
+			elog.Info("Second Phase", "Execute Time", time.Since(bt), "Height", datas.Height)
+			elog.Info("Tx Has Executed", "height", datas.Height, "count", count)
+			goto Done
+		case txChan := <-sc.txChan:
+			j := txChan.index
+			if !isHead && !needInitRecords {
+				if hasConflict(j, rwSetArr[j].Writes, writes) {
+					receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+					execFlags[j] = true
+				} else {
+					if hasConflict(j, rwSetArr[j].Writes, reads) && hasConflict(j, rwSetArr[j].Reads, writes) {
+						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+					} else {
+						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
+						go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
+						if err != nil {
+							receipts[j] = types.NewErrReceipt(err)
+						}
+						receipts[j] = receipt
+					}
+				}
+				execFlags[j] = true
+			}
+		case ad := <-sc.assistChan:
+			initMu.Lock()
+
+			if needInitRecords {
+				rwSetArr = ad.rwSets
+				initWg := sync.WaitGroup{}
+				for key, value := range ad.stateMap {
+					initWg.Add(1)
+					go func(k string, v *types.AssistItem) {
+						defer initWg.Done()
+						if v.MinRead != -1 {
+							reads.Store(k, int(v.MinRead))
+						}
+						if v.MinWrite != -1 {
+							writes.Store(k, int(v.MinWrite))
+						}
+					}(key, value)
+				}
+				initWg.Wait()
+				needInitRecords = false
+				hasParallelTx = true
+			}
+			initMu.Unlock()
+			//if ad.height == 3 {
+			//	time.Sleep(time.Duration(3) * time.Second)
+			//	if sch, ok := exec.scheduler.schedulerChanMap.Load(0); ok {
+			//		sch.(*schedulerChan).headChan <- true
+			//	}
+			//}
+			//default:
+			//	fmt.Println(datas.Height)
+		}
+	}
+Done:
+	sc.doneChan <- true
+	block := &types.Block{
+		ParentHash: datas.ParentHash,
+		MainHash:   datas.MainHash,
+		MainHeight: datas.MainHeight,
+		Txs:        datas.Txs,
+		BlockTime:  datas.BlockTime,
+		Height:     datas.Height,
+		Difficulty: uint32(datas.Difficulty),
+	}
+	reply := exec.client.NewMessage("blockchain", types.EventBlockReceipts, &types.ExecutedBlock{Block: block, Receipts: receipts})
+	exec.client.Send(reply, false)
 }
 
 func (exec *Executor) procExecTxList(msg *queue.Message) {
@@ -354,7 +555,6 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	syncMap := &sync.Map{}
 	reads := &sync.Map{}
 	writes := &sync.Map{}
-	parallelTxs := &sync.Map{}
 	hasParallelTx := false
 	rwSetArr := make([]RWSet, len(datas.Txs))
 
@@ -366,27 +566,25 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 			continue
 		}
 		if tx.GroupCount == 0 {
-
 			if strings.HasPrefix(string(tx.Execer), "user.basic.test") {
 				wg.Add(1)
-				func(i int) {
+				go func(j int) {
 					defer wg.Done()
-					driver := execute.loadDriver(tx, i)
+					driver := execute.loadDriver(tx, j)
 					if driver.GetDriverName() == "basic" {
 						basic, ok := driver.(*basic.Basic)
 						if ok {
 							rs, ws, err := basic.GetTxWritesAndReads(tx)
 							if err == nil {
-								rwSetArr[i] = RWSet{
+								rwSetArr[j] = RWSet{
 									Reads:  rs,
 									Writes: ws,
 								}
 							}
 						}
 					}
-					updateMinIndex(rwSetArr[i].Reads, reads, syncMap, i)
-					updateMinIndex(rwSetArr[i].Writes, writes, syncMap, i)
-					parallelTxs.Store(i, true)
+					updateMinIndex(rwSetArr[j].Reads, reads, syncMap, j)
+					updateMinIndex(rwSetArr[j].Writes, writes, syncMap, j)
 					hasParallelTx = true
 					receipts = append(receipts, &types.Receipt{})
 				}(index)
@@ -437,25 +635,24 @@ func (exec *Executor) procExecTxList(msg *queue.Message) {
 	}
 	wg.Wait()
 	if hasParallelTx {
-		for i, _ := range receipts {
+		for k, _ := range receipts {
 			wg.Add(1)
-			go func(j int) {
+			go func(j int, set *RWSet, tx *types.Transaction) {
 				defer wg.Done()
-				if _, ok := parallelTxs.Load(j); ok {
-					if hasConflict(j, rwSetArr[j].Writes, writes) {
-						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
-					}
-					if hasConflict(j, rwSetArr[j].Writes, reads) && hasConflict(j, rwSetArr[j].Reads, writes) {
-						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
-					} else {
-						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
-						if err != nil {
-							receipts[j] = types.NewErrReceipt(err)
-						}
-						receipts[j] = receipt
-					}
+				if hasConflict(j, set.Writes, writes) {
+					receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+					return
 				}
-			}(i)
+				if hasConflict(j, set.Writes, reads) && hasConflict(j, set.Reads, writes) {
+					receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
+				} else {
+					receipt, err := execute.execTx(exec, tx, false, j)
+					if err != nil {
+						receipts[j] = types.NewErrReceipt(err)
+					}
+					receipts[j] = receipt
+				}
+			}(k, &rwSetArr[k], datas.Txs[k])
 		}
 		wg.Wait()
 	}

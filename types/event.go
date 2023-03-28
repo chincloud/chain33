@@ -63,6 +63,7 @@ const (
 	EventStoreRollback        = 67
 	EventStoreCommit          = 68
 	EventCheckBlock           = 69
+	EventBlockReceipts        = 70
 	//seed
 	EventReplyGenSeed = 71
 	EventReplyGetSeed = 74
@@ -133,9 +134,11 @@ const (
 	EventReExecBlock  = 142
 	EventTxListByHash = 143
 	//exec
-	EventBlockChainQuery = 212
-	EventConsensusQuery  = 213
-	EventUpgrade         = 214
+	EventBlockChainQuery      = 212
+	EventConsensusQuery       = 213
+	EventUpgrade              = 214
+	EventInterBlockExecTxList = 215
+	EventAssistData           = 216
 
 	// BlockChain 接收的事件
 	EventGetLastBlockMainSequence   = 300

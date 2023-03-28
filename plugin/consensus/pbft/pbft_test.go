@@ -12,6 +12,7 @@ import (
 	basic "github.com/33cn/chain33/plugin/dapp/basic/executor"
 	"github.com/33cn/chain33/system/dapp"
 	"io"
+	"runtime"
 	"strings"
 
 	//cty "github.com/33cn/chain33/system/dapp/coins/types"
@@ -52,6 +53,7 @@ var (
 	transactions []*types.Transaction
 	txSize       = 1000
 	txs          []TxInfo
+	cpuNum       = runtime.NumCPU()
 )
 
 func init() {
@@ -63,6 +65,8 @@ func init() {
 	log.SetLogLevel("info")
 }
 func TestPbft(t *testing.T) {
+	runtime.GOMAXPROCS(cpuNum / 2)
+	initData("./tx_uniform_0.5_ycsb_a_100000.data")
 	q, chain, p2pnet, s, exec, cs, wallet := initEnvPbft()
 	defer chain.Close()
 	defer p2pnet.Close()
@@ -73,7 +77,6 @@ func TestPbft(t *testing.T) {
 	defer wallet.Close()
 	time.Sleep(5 * time.Second)
 
-	initData("./tx_zipf_0.3_ycsb_f_100000.data")
 	sendReplyList(q)
 	clearTestData()
 }
@@ -123,6 +126,7 @@ func initData(fileName string) {
 			index = 1
 		}
 	}
+	SetTxType(tx)
 	txs = append(txs, *tx)
 }
 
@@ -131,14 +135,14 @@ func SetTxWritesOrReads(strs []string, tx *TxInfo) {
 		for j := 2; j < len(strs); j++ {
 			keys := strings.Split(strs[j], "_")
 			n, _ := strconv.Atoi(keys[0])
-			tx.To = fmt.Sprintf("user.basic.test%03d", n)
+			tx.To = fmt.Sprintf("user.basic.test%05d", n)
 			tx.Writes = append(tx.Writes, keys[1])
 		}
 	} else if strs[1] == "Read" {
 		for j := 2; j < len(strs); j++ {
 			keys := strings.Split(strs[j], "_")
 			n, _ := strconv.Atoi(keys[0])
-			tx.To = fmt.Sprintf("user.basic.test%03d", n)
+			tx.To = fmt.Sprintf("user.basic.test%05d", n)
 			tx.Reads = append(tx.Reads, keys[1])
 		}
 	}
@@ -180,8 +184,8 @@ func initEnvPbft() (queue.Queue, *blockchain.BlockChain, *p2p.Manager, queue.Mod
 	walletm := wallet.New(chain33Cfg)
 	walletm.SetQueueClient(q.Client())
 
-	for j := 0; j < txSize; j++ {
-		name := fmt.Sprintf("user.basic.test%03d", j)
+	for j := 0; j < len(txs); j++ {
+		name := fmt.Sprintf("user.basic.test%05d", j)
 		//addr := dapp.ExecAddress(name)
 		//fmt.Println(addr)
 		basic.CopyBasic(name, chain33Cfg)
@@ -249,9 +253,9 @@ func createReplyList(cfg *types.Chain33Config, count int) {
 	for j := 0; j < txSize; j++ {
 		//tx := &types.Transaction{}
 		idx := count*txSize + j
-		tx := &types.Transaction{Execer: []byte(txs[j].To), Payload: types.Encode(CreateAction(idx)), Fee: 0}
+		tx := &types.Transaction{Execer: []byte(txs[idx].To), Payload: types.Encode(CreateAction(idx)), Fee: 0}
 		//tx.To = "1Q4NhureJxKNBf71d26B9J3fBQoQcfmez2"
-		tx.To = dapp.ExecAddress(txs[j].To)
+		tx.To = dapp.ExecAddress(txs[idx].To)
 		tx.Nonce = random.Int63()
 		tx.ChainID = cfg.GetChainID()
 
@@ -265,10 +269,10 @@ func createReplyList(cfg *types.Chain33Config, count int) {
 func CreateAction(idx int) *bty.BasicAction {
 	tx := txs[idx]
 	var action *bty.BasicAction
-	if tx.Type == 0 {
+	if tx.Type == 1 {
 		val := &bty.BasicAction_Read{Read: &bty.Read{Reads: tx.Reads}}
 		action = &bty.BasicAction{Value: val, Ty: bty.BasicActionRead}
-	} else if tx.Type == 1 {
+	} else if tx.Type == 2 {
 		val := &bty.BasicAction_Update{Update: &bty.Update{Writes: tx.Writes}}
 		action = &bty.BasicAction{Value: val, Ty: bty.BasicActionUpdate}
 	} else if tx.Type == 3 {

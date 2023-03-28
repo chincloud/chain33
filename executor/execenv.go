@@ -15,6 +15,7 @@ import (
 	drivers "github.com/33cn/chain33/system/dapp"
 	"github.com/33cn/chain33/types"
 	"github.com/golang/protobuf/proto"
+	"sync"
 )
 
 //执行器 -> db 环境
@@ -33,7 +34,7 @@ type executor struct {
 	execapi    api.ExecutorAPI
 	receipts   []*types.ReceiptData
 	//单个区块执行期间执行器缓存
-	driverCache map[string]drivers.Driver
+	driverCache sync.Map
 	//在单笔交易执行期间，将当前交易的执行driver缓存，避免多次load
 	//currTxIdx  int
 	//currExecTx *types.Transaction
@@ -71,7 +72,7 @@ func newExecutor(ctx *executorCtx, exec *Executor, localdb dbm.KVDB, txs []*type
 		receipts:     receipts,
 		api:          exec.qclient,
 		gcli:         exec.grpccli,
-		driverCache:  make(map[string]drivers.Driver),
+		driverCache:  sync.Map{},
 		//currTxIdx:    -1,
 		txDriverCache: make([]*drivers.Driver, len(txs)),
 		cfg:           cfg,
@@ -295,14 +296,17 @@ func (e *executor) freeNoneDriver(none drivers.Driver) {
 
 // 加载none执行器
 func (e *executor) loadNoneDriver() drivers.Driver {
-	none, ok := e.driverCache["none"]
+	n, ok := e.driverCache.Load("none")
+	var none drivers.Driver
 	var err error
 	if !ok {
 		none, err = drivers.LoadDriverWithClient(e.api, "none", 0)
 		if err != nil {
 			panic(err)
 		}
-		e.driverCache["none"] = none
+		e.driverCache.Store("none", none)
+	} else {
+		none = n.(drivers.Driver)
 	}
 	return none
 }
@@ -322,15 +326,19 @@ func (e *executor) loadDriver(tx *types.Transaction, index int) (c drivers.Drive
 
 	var err error
 	name := types.Bytes2Str(tx.Execer)
-	driver, ok := e.driverCache[name]
+	d, ok := e.driverCache.Load(name)
 	isFork := e.cfg.IsFork(e.height, "ForkCacheDriver")
+
+	var driver drivers.Driver
 
 	if !ok {
 		driver, err = drivers.LoadDriverWithClient(e.api, name, e.height)
 		if err != nil {
 			driver = e.loadNoneDriver()
 		}
-		e.driverCache[name] = driver
+		e.driverCache.Store(name, driver)
+	} else {
+		driver = d.(drivers.Driver)
 	}
 
 	//fork之前，多笔相同执行器的交易只有第一笔会进行Allow判定，从缓存中获取的执行器不需要进行allow判定
@@ -350,7 +358,7 @@ func (e *executor) loadDriver(tx *types.Transaction, index int) (c drivers.Drive
 		//fork之前的问题在于cache缓存错乱，不应该缓存实际用于执行的，即缓存包含了allow的逻辑，导致错乱
 		//正确逻辑是，cache中的执行器对象和名称是一一对应的，保证了driver对象复用，但同时不同交易的allow需要重新判定
 		if !isFork {
-			e.driverCache[name] = driver
+			e.driverCache.Store(name, driver)
 		}
 	} else {
 		driver.SetName(types.Bytes2Str(types.GetRealExecName(tx.Execer)))
