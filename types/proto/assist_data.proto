@@ -6,10 +6,10 @@ option go_package = "github.com/33cn/chain33/types";
 message AssistItem {
   int32 MinRead = 1;
   int32 MinWrite = 2;
-  int32 LastVersion = 3;
 }
 
 message AssistData {
   int32 Height = 1;
   map<string, AssistItem> StateMap = 2;
+  map<int32, int32> VersionMap = 3;
 }

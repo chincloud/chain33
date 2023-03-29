@@ -104,7 +104,7 @@ func New(cfg *typ.Chain33Config) *Executor {
 		}
 		exec.alias[data[0]] = data[1]
 	}
-	exec.scheduler = newScheduler(exec, 4)
+	exec.scheduler = newScheduler(exec, 10)
 
 	return exec
 }
@@ -442,7 +442,7 @@ func (exec *Executor) procExecTxListInterBlock(msg *queue.Message, sc *scheduler
 						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
 					} else {
 						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
-						go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
+						//go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
 						if err != nil {
 							receipts[j] = types.NewErrReceipt(err)
 						}
@@ -465,7 +465,7 @@ func (exec *Executor) procExecTxListInterBlock(msg *queue.Message, sc *scheduler
 						receipts[j] = types.NewErrReceipt(types.ErrTxAborted)
 					} else {
 						receipt, err := execute.execTx(exec, datas.Txs[j], false, j)
-						go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
+						//go exec.scheduler.receiveTxCommitMsg(rwSetArr[j], int(datas.Height))
 						if err != nil {
 							receipts[j] = types.NewErrReceipt(err)
 						}

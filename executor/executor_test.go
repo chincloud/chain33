@@ -50,7 +50,7 @@ var (
 	bt                  time.Time
 	assistDataMap       = make(map[int]*types.AssistData)
 	stateLastVersionMap = make(map[string]int)
-	schedulerQueueSize  = 4
+	schedulerQueueSize  = 10
 	count               int
 	size                int
 )
@@ -676,8 +676,9 @@ func generateAssistData() {
 		writes := make(map[string]int)
 		keys := make(map[string]bool)
 		data := &types.AssistData{
-			StateMap: make(map[string]*types.AssistItem),
-			Height:   int32(i + 1),
+			StateMap:   make(map[string]*types.AssistItem),
+			Height:     int32(i + 1),
+			VersionMap: make(map[int32]int32),
 		}
 		start := i * txSize
 		for j := 0; j < txSize; j++ {
@@ -688,6 +689,7 @@ func generateAssistData() {
 		count = 0
 		for j := 0; j < txSize; j++ {
 			prefix := fmt.Sprintf("mavl-basic-%s-", txs[start+j].To)
+			txVersion := 0
 			for _, key := range txs[start+j].Reads {
 				keys[prefix+key] = true
 				if _, ok := data.StateMap[prefix+key]; !ok {
@@ -696,7 +698,10 @@ func generateAssistData() {
 					if gap >= schedulerQueueSize {
 						gap = 0
 					}
-					data.StateMap[prefix+key] = &types.AssistItem{LastVersion: int32(gap)}
+					if gap > txVersion {
+						txVersion = gap
+					}
+					data.StateMap[prefix+key] = &types.AssistItem{}
 				}
 			}
 			for _, key := range txs[start+j].Writes {
@@ -707,9 +712,15 @@ func generateAssistData() {
 					if gap >= schedulerQueueSize {
 						gap = 0
 					}
-					data.StateMap[prefix+key] = &types.AssistItem{LastVersion: int32(gap)}
+					if gap > txVersion {
+						txVersion = gap
+					}
+					data.StateMap[prefix+key] = &types.AssistItem{}
 				}
 				stateLastVersionMap[prefix+key] = i
+			}
+			if txVersion > 0 {
+				data.VersionMap[int32(j)] = int32(txVersion)
 			}
 			if conflict(j, txs[start+j].Writes, writes, prefix) {
 				continue

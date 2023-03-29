@@ -20,7 +20,7 @@ type scheduler struct {
 	executeMap         *sync.Map
 	stateMap           *sync.Map
 	stateMuMap         *sync.Map
-	heightTxMap        *heightTxMap
+	heightTxMap        *sync.Map
 	count              int32
 }
 
@@ -29,11 +29,6 @@ type schedulerChan struct {
 	txChan     chan *transIndex
 	assistChan chan *assistData
 	doneChan   chan bool
-}
-
-type heightTxMap struct {
-	txMap    *sync.Map
-	heightMu *sync.Map
 }
 
 func newSchedulerChan() *schedulerChan {
@@ -73,11 +68,8 @@ func newScheduler(exec *Executor, executingQueueSize int) *scheduler {
 		executeMap:         &sync.Map{},
 		stateMap:           &sync.Map{},
 		stateMuMap:         &sync.Map{},
-		heightTxMap: &heightTxMap{
-			heightMu: &sync.Map{},
-			txMap:    &sync.Map{},
-		},
-		count: int32(0),
+		heightTxMap:        &sync.Map{},
+		count:              int32(0),
 	}
 
 	go func() {
@@ -91,22 +83,26 @@ func newScheduler(exec *Executor, executingQueueSize int) *scheduler {
 				sc.headChan <- true
 				<-sc.doneChan
 				s.currentHeight = height + 1
-				//go func() {
-				//	if xxx, okk := s.heightTxMap.txMap.Load(height); okk {
-				//		tsArr := xxx.([]*txScheduler)
-				//		wg := sync.WaitGroup{}
-				//		for _, ts := range tsArr {
-				//			wg.Add(1)
-				//			go func(xx *txScheduler) {
-				//				defer wg.Done()
-				//				xx.sc.txChan <- xx.ti
-				//			}(ts)
-				//		}
-				//		wg.Wait()
-				//		s.heightTxMap.txMap.Delete(height)
-				//		s.heightTxMap.heightMu.Delete(height)
-				//	}
-				//}()
+				go func() {
+					if xxx, okk := s.heightTxMap.Load(int32(height)); okk {
+						tsMap := xxx.(*sync.Map)
+						wg := sync.WaitGroup{}
+						tsMap.Range(func(key, value any) bool {
+							wg.Add(1)
+							go func(xx *txScheduler) {
+								defer wg.Done()
+								if xx.ti.height > s.currentHeight {
+									xx.sc.txChan <- xx.ti
+								}
+								tsMap.Delete(xx)
+							}(key.(*txScheduler))
+							return true
+						})
+
+						wg.Wait()
+						s.heightTxMap.Delete(int32(height))
+					}
+				}()
 
 				//下个区块已经到达执行队列队头
 				//if next, okk := s.schedulerChanMap.Load(height + 1); okk {
@@ -200,6 +196,7 @@ func (s *scheduler) receiveAssistData(msg *queue.Message) {
 			sc.assistChan <- data
 		}
 
+		time.Sleep(time.Duration(3*data.height) * time.Millisecond)
 		//TODO 生成调度数据
 		bt := time.Now()
 		for idx, _ := range txList.Txs {
@@ -212,59 +209,23 @@ func (s *scheduler) receiveAssistData(msg *queue.Message) {
 					height:  data.height,
 					depends: 0,
 				}
-				keys := make(map[string]bool, 8)
-				for _, key := range transIdx.rwSet.Reads {
-					keys[key] = true
+
+				if ver, ojbk := ad.VersionMap[int32(i)]; ojbk {
+					transIdx.depends = int32(data.height) - ver
 				}
-				for _, key := range transIdx.rwSet.Writes {
-					keys[key] = true
+
+				height := transIdx.depends
+				if height == 0 && data.height > s.executingQueueSize {
+					height = int32(data.height - s.executingQueueSize)
 				}
-				for key, _ := range keys {
-					if item, ojbk := data.stateMap[key]; ojbk {
-						lastVersion := int(item.LastVersion)
-						if lastVersion != 0 && data.height-lastVersion > s.currentHeight {
-							atomic.AddInt32(&transIdx.depends, 1)
-							stateMu, _ := s.stateMuMap.LoadOrStore(key, &sync.Mutex{})
-							stateMu.(*sync.Mutex).Lock()
-							m, okkk := s.stateMap.Load(key)
-							var transIdxArr []*transIndex
-							if !okkk {
-								m = &sync.Map{}
-								s.stateMap.Store(key, m)
-							} else {
-								arr, o := m.(*sync.Map).Load(data.height - lastVersion)
-								if o {
-									transIdxArr = arr.([]*transIndex)
-								}
-							}
-							transIdxArr = append(transIdxArr, transIdx)
-							m.(*sync.Map).Store(data.height-lastVersion, transIdxArr)
-							stateMu.(*sync.Mutex).Unlock()
-						}
-					}
+
+				actual, _ := s.heightTxMap.LoadOrStore(height, &sync.Map{})
+				ts := &txScheduler{
+					ti: transIdx,
+					sc: sc,
 				}
-				if transIdx.depends == 0 {
-					gap := data.height - s.currentHeight
-					if gap > 0 && gap < s.executingQueueSize {
-						sc.txChan <- transIdx
-					} else {
-						//height := data.height - s.executingQueueSize
-						//if height < 1 {
-						//	return
-						//}
-						//actual, _ := s.heightTxMap.heightMu.LoadOrStore(height, &sync.Mutex{})
-						//actual.(*sync.Mutex).Lock()
-						//xxx, _ := s.heightTxMap.txMap.Load(height)
-						//tsArr := xxx.([]*txScheduler)
-						//ts := &txScheduler{
-						//	ti: transIdx,
-						//	sc: sc,
-						//}
-						//tsArr = append(tsArr, ts)
-						//s.heightTxMap.txMap.Store(height, tsArr)
-						//actual.(*sync.Mutex).Unlock()
-					}
-				}
+				actual.(*sync.Map).Store(ts, true)
+
 			}(idx)
 		}
 		wg.Wait()
